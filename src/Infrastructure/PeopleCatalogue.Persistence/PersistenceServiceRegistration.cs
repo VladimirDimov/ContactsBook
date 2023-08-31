@@ -17,6 +17,7 @@ namespace PeopleCatalogue.Persistence
             });
 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddScoped(typeof(IPersonRepository), typeof(PersonRepository));
 
             return services;
         }
