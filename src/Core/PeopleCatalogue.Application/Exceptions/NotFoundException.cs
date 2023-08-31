@@ -1,4 +1,4 @@
-﻿namespace PeopleCatalogue.Application.Exceptions
+﻿namespace ContactsBook.Application.Exceptions
 {
     internal class NotFoundException : Exception
     {

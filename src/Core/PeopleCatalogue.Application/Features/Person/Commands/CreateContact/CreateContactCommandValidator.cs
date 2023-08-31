@@ -1,11 +1,11 @@
 ﻿using System.Text;
 using FluentValidation;
 
-namespace PeopleCatalogue.Application.Features.Person.Commands.CreatePerson
+namespace ContactsBook.Application.Features.Contact.Commands.CreateContact
 {
-    public class CreatePersonCommandValidator : AbstractValidator<CreatePersonCommand>
+    public class CreateContactCommandValidator : AbstractValidator<CreateContactCommand>
     {
-        public CreatePersonCommandValidator()
+        public CreateContactCommandValidator()
         {
             RuleFor(m => m.FirstName)
                 .NotEmpty()

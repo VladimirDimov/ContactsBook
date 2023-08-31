@@ -1,20 +1,20 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PeopleCatalogue.Domain;
+using ContactsBook.Domain;
 
-namespace PeopleCatalogue.Persistence.DatabaseContext
+namespace ContactsBook.Persistence.DatabaseContext
 {
-    public class PeopleDatabaseContext : DbContext
+    public class ContactsBookDatabaseContext : DbContext
     {
-        public PeopleDatabaseContext(DbContextOptions<PeopleDatabaseContext> options)
+        public ContactsBookDatabaseContext(DbContextOptions<ContactsBookDatabaseContext> options)
             : base(options)
         {
         }
 
-        public DbSet<Person> People { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(PeopleDatabaseContext).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(ContactsBookDatabaseContext).Assembly);
 
             base.OnModelCreating(modelBuilder);
         }

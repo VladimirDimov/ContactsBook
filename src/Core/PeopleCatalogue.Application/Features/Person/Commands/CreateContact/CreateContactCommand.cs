@@ -1,9 +1,9 @@
-﻿namespace PeopleCatalogue.Application.Features.Person.Queries.GetPersonDetails
-{
-    public class PersonDetailsDto
-    {
-        public int Id { get; set; }
+﻿using MediatR;
 
+namespace ContactsBook.Application.Features.Contact.Commands.CreateContact
+{
+    public class CreateContactCommand : IRequest<int>
+    {
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
@@ -15,9 +15,5 @@
         public string PhoneNumber { get; set; }
 
         public string Iban { get; set; }
-
-        public DateTime CreatedOn { get; set; }
-
-        public DateTime? UpdatedOn { get; set; }
     }
 }

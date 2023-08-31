@@ -1,6 +1,6 @@
-﻿namespace PeopleCatalogue.Domain
+﻿namespace ContactsBook.Domain
 {
-    public class Person : BaseEntity
+    public class Contact : BaseEntity
     {
         public string FirstName { get; set; } = string.Empty;
 

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FluentValidation.Results;
 
-namespace PeopleCatalogue.Application.Exceptions
+namespace ContactsBook.Application.Exceptions
 {
     internal class BadRequestException : Exception
     {

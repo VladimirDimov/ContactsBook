@@ -1,6 +1,6 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
-namespace PeopleCatalogue.Api.Controllers
+namespace ContactsBook.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]

@@ -1,6 +1,6 @@
-﻿namespace PeopleCatalogue.Application.Features.Person.Queries.GetAllPeople
+﻿namespace ContactsBook.Application.Features.Contact.Queries.GetAllContacts
 {
-    public class PersonDto
+    public class ContactDto
     {
         public int Id { get; set; }
 

@@ -1,8 +1,8 @@
 ﻿
-using PeopleCatalogue.Application;
-using PeopleCatalogue.Persistence;
+using ContactsBook.Application;
+using ContactsBook.Persistence;
 
-namespace PeopleCatalogue.Api
+namespace ContactsBook.Api
 {
     public class Program
     {

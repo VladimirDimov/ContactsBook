@@ -1,16 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PeopleCatalogue.Application.Contracts.Persistence;
-using PeopleCatalogue.Domain;
-using PeopleCatalogue.Persistence.DatabaseContext;
+using ContactsBook.Application.Contracts.Persistence;
+using ContactsBook.Domain;
+using ContactsBook.Persistence.DatabaseContext;
 
-namespace PeopleCatalogue.Persistence.Repositories
+namespace ContactsBook.Persistence.Repositories
 {
     public class GenericRepository<T> : IGenericRepository<T>
         where T : BaseEntity
     {
-        protected readonly PeopleDatabaseContext _context;
+        protected readonly ContactsBookDatabaseContext _context;
 
-        public GenericRepository(PeopleDatabaseContext context)
+        public GenericRepository(ContactsBookDatabaseContext context)
         {
             _context = context;
         }

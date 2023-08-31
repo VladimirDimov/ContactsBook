@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using PeopleCatalogue.Domain;
+using ContactsBook.Domain;
 
-namespace PeopleCatalogue.Persistence.Configurations
+namespace ContactsBook.Persistence.Configurations
 {
-    public class PersonConfiguration : IEntityTypeConfiguration<Person>
+    public class ContactConfiguration : IEntityTypeConfiguration<Contact>
     {
-        public void Configure(EntityTypeBuilder<Person> builder)
+        public void Configure(EntityTypeBuilder<Contact> builder)
         {
             builder.HasKey(x => x.Id);
 

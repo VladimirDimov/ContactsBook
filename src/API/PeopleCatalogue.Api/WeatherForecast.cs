@@ -1,4 +1,4 @@
-namespace PeopleCatalogue.Api
+namespace ContactsBook.Api
 {
     public class WeatherForecast
     {

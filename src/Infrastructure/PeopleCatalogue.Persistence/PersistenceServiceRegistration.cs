@@ -1,23 +1,23 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using PeopleCatalogue.Application.Contracts.Persistence;
-using PeopleCatalogue.Persistence.DatabaseContext;
-using PeopleCatalogue.Persistence.Repositories;
+using ContactsBook.Application.Contracts.Persistence;
+using ContactsBook.Persistence.DatabaseContext;
+using ContactsBook.Persistence.Repositories;
 
-namespace PeopleCatalogue.Persistence
+namespace ContactsBook.Persistence
 {
     public static class PersistenceServiceRegistration
     {
         public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<PeopleDatabaseContext>(options =>
+            services.AddDbContext<ContactsBookDatabaseContext>(options =>
             {
-                options.UseSqlServer(configuration.GetConnectionString("PeopleCatalogue"));
+                options.UseSqlServer(configuration.GetConnectionString("ContactsBook"));
             });
 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-            services.AddScoped(typeof(IPersonRepository), typeof(PersonRepository));
+            services.AddScoped(typeof(IContactRepository), typeof(ContactRepository));
 
             return services;
         }

@@ -1,6 +1,6 @@
-﻿using PeopleCatalogue.Domain;
+﻿using ContactsBook.Domain;
 
-namespace PeopleCatalogue.Application.Contracts.Persistence
+namespace ContactsBook.Application.Contracts.Persistence
 {
     public interface IGenericRepository<T>
         where T : BaseEntity

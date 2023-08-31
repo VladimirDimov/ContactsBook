@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 
-namespace PeopleCatalogue.Application.Features.Person.Commands.UpdatePerson
+namespace ContactsBook.Application.Features.Contact.Commands.UpdateContact
 {
-    public class UpdatePersonCommand : IRequest<Unit>
+    public class UpdateContactCommand : IRequest<Unit>
     {
         public int Id { get; set; }
 

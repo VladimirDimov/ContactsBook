@@ -1,9 +1,9 @@
-﻿using MediatR;
-
-namespace PeopleCatalogue.Application.Features.Person.Commands.CreatePerson
+﻿namespace ContactsBook.Application.Features.Contact.Queries.GetContactDetails
 {
-    public class CreatePersonCommand : IRequest<int>
+    public class ContactDetailsDto
     {
+        public int Id { get; set; }
+
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
@@ -15,5 +15,9 @@ namespace PeopleCatalogue.Application.Features.Person.Commands.CreatePerson
         public string PhoneNumber { get; set; }
 
         public string Iban { get; set; }
+
+        public DateTime CreatedOn { get; set; }
+
+        public DateTime? UpdatedOn { get; set; }
     }
 }

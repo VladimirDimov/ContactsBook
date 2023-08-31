@@ -2,7 +2,7 @@
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace PeopleCatalogue.Application
+namespace ContactsBook.Application
 {
     public static class ApplicationServiceRegistration
     {

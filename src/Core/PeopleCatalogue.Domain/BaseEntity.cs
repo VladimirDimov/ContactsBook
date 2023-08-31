@@ -1,4 +1,4 @@
-﻿namespace PeopleCatalogue.Domain
+﻿namespace ContactsBook.Domain
 {
     public abstract class BaseEntity
     {
