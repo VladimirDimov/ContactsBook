@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using PeopleCatalogue.Application.Contracts.Persistence;
+using PeopleCatalogue.Application.Exceptions;
 
 namespace PeopleCatalogue.Application.Features.Person.Commands.CreatePerson
 {
@@ -19,6 +20,12 @@ namespace PeopleCatalogue.Application.Features.Person.Commands.CreatePerson
 
         public async Task<int> Handle(CreatePersonCommand request, CancellationToken cancellationToken)
         {
+            var validator = new CreatePersonCommandValidator();
+            var validationResult = await validator.ValidateAsync(request, cancellationToken);
+
+            if (!validationResult.IsValid)
+                throw new BadRequestException("Invalid person data", validationResult);
+
             var person = _mapper.Map<Domain.Person>(request);
 
             var createdPerson = await _personRepository.CreateAsync(person);
