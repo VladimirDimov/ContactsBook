@@ -16,8 +16,4 @@
     <ProjectReference Include="..\PeopleCatalogue.Domain\PeopleCatalogue.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\Person\Commands\" />
-  </ItemGroup>
-
 </Project>
