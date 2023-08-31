@@ -3,7 +3,7 @@ using AutoMapper.Configuration.Annotations;
 using MediatR;
 using PeopleCatalogue.Application.Contracts.Persistence;
 
-namespace PeopleCatalogue.Application.Features.Person.Queries.GetAllPeople
+namespace PeopleCatalogue.Application.Features.Person.Queries.GetPersonDetails
 {
     public class GetPersonDetailsQueryHandler : IRequestHandler<GetPersonDetailsQuery, PersonDetailsDto>
     {

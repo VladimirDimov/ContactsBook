@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using PeopleCatalogue.Application.Features.Person.Queries.GetAllPeople;
+using PeopleCatalogue.Application.Features.Person.Queries.GetPersonDetails;
 using PeopleCatalogue.Domain;
 
 namespace PeopleCatalogue.Application.MappingProfiles

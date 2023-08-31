@@ -1,4 +1,4 @@
-﻿namespace PeopleCatalogue.Application.Features.Person.Queries.GetAllPeople
+﻿namespace PeopleCatalogue.Application.Features.Person.Queries.GetPersonDetails
 {
     public class PersonDetailsDto
     {
