@@ -36,7 +36,7 @@ namespace ContactsBook.Persistence.Repositories
         {
             return await _context.Set<T>()
                 .AsNoTracking()
-                .FirstOrDefaultAsync(e => e.Equals(id));
+                .FirstOrDefaultAsync(e => e.Id.Equals(id));
         }
 
         public async Task<IReadOnlyList<T>> GetAsync()
