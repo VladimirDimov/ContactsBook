@@ -20,6 +20,12 @@ namespace PeopleCatalogue.Application.Features.Person.Commands.CreatePerson
             RuleFor(m => m.PhoneNumber)
                 .MaximumLength(20);
 
+            RuleFor(m => m.Address)
+                .MaximumLength(200);
+
+            RuleFor(m => m.Iban)
+                .MaximumLength(34);
+
             RuleFor(m => m.Iban)
                 .Must(iban =>
                 {

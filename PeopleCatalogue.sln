@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeopleCatalogue.Domain", "s
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeopleCatalogue.Application", "src\Core\PeopleCatalogue.Application\PeopleCatalogue.Application.csproj", "{223B6515-80E5-45F4-B582-4D9681EA36DB}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PeopleCatalogue.Persistence", "src\Infrastructure\PeopleCatalogue.Persistence\PeopleCatalogue.Persistence.csproj", "{A1DCAB15-750A-482B-B4C5-A88A013DFAB7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{223B6515-80E5-45F4-B582-4D9681EA36DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{223B6515-80E5-45F4-B582-4D9681EA36DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{223B6515-80E5-45F4-B582-4D9681EA36DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1DCAB15-750A-482B-B4C5-A88A013DFAB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1DCAB15-750A-482B-B4C5-A88A013DFAB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1DCAB15-750A-482B-B4C5-A88A013DFAB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1DCAB15-750A-482B-B4C5-A88A013DFAB7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -42,6 +48,7 @@ Global
 		{7B066470-E426-46F0-AEDB-131D68E39AAE} = {76A50AED-1544-4C76-9362-F858B3D4B989}
 		{454E1E0D-296C-4E22-A445-F168722F1C0A} = {6549A659-6001-40A7-882D-ADC2E100F361}
 		{223B6515-80E5-45F4-B582-4D9681EA36DB} = {6549A659-6001-40A7-882D-ADC2E100F361}
+		{A1DCAB15-750A-482B-B4C5-A88A013DFAB7} = {6B061931-636B-4A3E-814E-91CCA2CA3DE2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D933283A-8434-486E-9C06-22FB33C02CF1}
