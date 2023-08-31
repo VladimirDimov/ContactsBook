@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using PeopleCatalogue.Application.Features.Person.Queries.GetAllPeople;
 using PeopleCatalogue.Domain;
 
 namespace PeopleCatalogue.Application.MappingProfiles
@@ -8,6 +9,7 @@ namespace PeopleCatalogue.Application.MappingProfiles
         public PersonProfile()
         {
             CreateMap<PersonDto, Person>().ReverseMap();
+            CreateMap<PersonDetailsDto, Person>().ReverseMap();
         }
     }
 }

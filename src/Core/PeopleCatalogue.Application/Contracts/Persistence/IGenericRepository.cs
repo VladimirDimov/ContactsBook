@@ -9,5 +9,6 @@ namespace PeopleCatalogue.Application.Contracts.Persistence
         Task<T> UpdateAsync(T entity);
         Task<T> DeleteAsync(T entity);
         Task<T> GetAsync(int id);
+        Task<List<T>> GetAsync();
     }
 }
