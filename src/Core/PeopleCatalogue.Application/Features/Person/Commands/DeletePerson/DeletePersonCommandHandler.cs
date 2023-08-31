@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using PeopleCatalogue.Application.Contracts.Persistence;
+using PeopleCatalogue.Application.Exceptions;
 
 namespace PeopleCatalogue.Application.Features.Person.Commands.DeletePerson
 {
@@ -19,7 +20,8 @@ namespace PeopleCatalogue.Application.Features.Person.Commands.DeletePerson
 
         public async Task<Unit> Handle(DeletePersonCommand request, CancellationToken cancellationToken)
         {
-            var person = await _personRepository.GetAsync(request.Id);
+            var person = await _personRepository.GetAsync(request.Id) ??
+                throw new NotFoundException(nameof(Person), request.Id);
 
             await _personRepository.DeleteAsync(person);
 
