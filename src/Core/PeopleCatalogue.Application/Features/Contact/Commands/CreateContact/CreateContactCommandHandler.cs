@@ -26,7 +26,12 @@ namespace ContactsBook.Application.Features.Contact.Commands.CreateContact
             if (!validationResult.IsValid)
                 throw new BadRequestException("Invalid person data", validationResult);
 
-            var person = _mapper.Map<Domain.Contact>(request);
+            var person = new Domain.Contact(
+                request.FirstName,
+                request.LastName,
+                request.DateOfBirth,
+                request.PhoneNumber,
+                request.Iban);
 
             var createdPerson = await _personRepository.CreateAsync(person);
 

@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using ContactsBook.Application.Contracts.Persistence;
 using ContactsBook.Persistence.DatabaseContext;
 using ContactsBook.Persistence.Repositories;
+using ContactsBook.Domain.Interfaces;
 
 namespace ContactsBook.Persistence
 {
@@ -18,6 +19,7 @@ namespace ContactsBook.Persistence
 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped(typeof(IContactRepository), typeof(ContactRepository));
+            services.AddScoped(typeof(IAddressRepository), typeof(AddressRepository));
 
             return services;
         }

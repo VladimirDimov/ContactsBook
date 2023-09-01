@@ -1,6 +1,6 @@
 ﻿using ContactsBook.Domain;
 
-namespace ContactsBook.Application.Contracts.Persistence
+namespace ContactsBook.Domain.Interfaces
 {
     public interface IGenericRepository<T>
         where T : BaseEntity

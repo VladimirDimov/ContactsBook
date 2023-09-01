@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ContactsBook.Application.Contracts.Persistence;
 using ContactsBook.Domain;
 using ContactsBook.Persistence.DatabaseContext;
+using ContactsBook.Domain.Interfaces;
 
 namespace ContactsBook.Persistence.Repositories
 {

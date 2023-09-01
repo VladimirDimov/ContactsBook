@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -16,6 +16,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PeopleCatalogue.Domain\ContactsBook.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\Address\Commands\UpdateAddress\" />
+    <Folder Include="Features\Address\Commands\DeleteAddress\" />
+    <Folder Include="Features\Address\Queries\" />
   </ItemGroup>
 
 </Project>

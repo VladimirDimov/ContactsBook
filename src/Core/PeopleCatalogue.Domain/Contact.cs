@@ -1,4 +1,6 @@
-﻿namespace ContactsBook.Domain
+﻿using ContactsBook.Domain.Events;
+
+namespace ContactsBook.Domain
 {
     public class Contact : BaseEntity
     {
@@ -33,6 +35,8 @@
         public void AddAddress(Address address)
         {
             Address.Add(address);
+
+            Events.Add(new AddressAddedEvent(default, address));
         }
     }
 }
