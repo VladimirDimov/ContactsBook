@@ -21,7 +21,8 @@
   <ItemGroup>
     <Folder Include="Features\Address\Commands\UpdateAddress\" />
     <Folder Include="Features\Address\Commands\DeleteAddress\" />
-    <Folder Include="Features\Address\Queries\" />
+    <Folder Include="Features\Address\Queries\GetContactAddresses\" />
+    <Folder Include="Features\Address\Queries\GetAddressDetails\" />
   </ItemGroup>
 
 </Project>

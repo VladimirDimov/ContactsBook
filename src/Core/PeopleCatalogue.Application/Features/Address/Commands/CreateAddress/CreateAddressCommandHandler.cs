@@ -24,13 +24,13 @@ namespace ContactsBook.Application.Features.Contact.Commands.CreateContact
 
         public async Task<int> Handle(CreateAddressCommand request, CancellationToken cancellationToken)
         {
-            //var validator = new CreateContactCommandValidator();
-            //var validationResult = await validator.ValidateAsync(request, cancellationToken);
+            var validator = new CreateAddressCommandValidator();
+            var validationResult = await validator.ValidateAsync(request, cancellationToken);
 
-            //if (!validationResult.IsValid)
-            //    throw new BadRequestException("Invalid person data", validationResult);
+            if (!validationResult.IsValid)
+                throw new BadRequestException("Invalid address data", validationResult);
 
-            var address = new Domain.Address(request.Country, request.City, request.Street, request.Number);
+            var address = new Domain.Address(request.Title, request.Country, request.City, request.Street, request.Number);
             var contact = await _contactRepository.GetAsync(request.ContactId);
 
             if (contact is null)
