@@ -1,6 +1,7 @@
 ﻿using ContactsBook.Application.Contracts.Persistence;
 using ContactsBook.Domain;
 using ContactsBook.Persistence.DatabaseContext;
+using Microsoft.EntityFrameworkCore;
 
 namespace ContactsBook.Persistence.Repositories
 {
@@ -10,5 +11,8 @@ namespace ContactsBook.Persistence.Repositories
             : base(context)
         {
         }
+
+        public async Task<List<Address>> GetByContactId(int contactId)
+            => await Set.Where(a => a.ContactId == contactId).ToListAsync();
     }
 }

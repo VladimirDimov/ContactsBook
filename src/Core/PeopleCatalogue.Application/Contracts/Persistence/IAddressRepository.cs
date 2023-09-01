@@ -5,5 +5,6 @@ namespace ContactsBook.Application.Contracts.Persistence
 {
     public interface IAddressRepository : IGenericRepository<Address>
     {
+        Task<List<Address>> GetByContactId(int contactId);
     }
 }

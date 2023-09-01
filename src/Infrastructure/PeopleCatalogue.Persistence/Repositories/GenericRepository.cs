@@ -10,6 +10,8 @@ namespace ContactsBook.Persistence.Repositories
     {
         protected readonly ContactsBookDatabaseContext _context;
 
+        protected DbSet<T> Set => _context.Set<T>();
+
         public GenericRepository(ContactsBookDatabaseContext context)
         {
             _context = context;

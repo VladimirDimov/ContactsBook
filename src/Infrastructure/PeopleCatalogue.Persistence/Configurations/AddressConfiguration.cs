@@ -10,11 +10,19 @@ namespace ContactsBook.Persistence.Configurations
         {
             builder.HasKey(x => x.Id);
 
+            builder.Property(x => x.Title)
+                .IsRequired()
+                .HasMaxLength(20);
+
             builder.Property(x => x.Country)
                 .IsRequired()
                 .HasMaxLength(30);
 
             builder.Property(x => x.City)
+                .IsRequired()
+                .HasMaxLength(30);
+
+            builder.Property(x => x.Street)
                 .IsRequired()
                 .HasMaxLength(30);
 
