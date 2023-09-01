@@ -2,7 +2,7 @@
 using MediatR;
 using ContactsBook.Application.Contracts.Persistence;
 
-namespace ContactsBook.Application.Features.Contact.Queries.GetAllContacts
+namespace ContactsBook.Application.Features.Address.Queries.GetContactAddresses
 {
     public class GetAddressByContactQueryHandler : IRequestHandler<GetAddressesbyContactQuery, List<AddressDto>>
     {

@@ -1,4 +1,5 @@
-﻿using ContactsBook.Application.Features.Contact.Commands.CreateContact;
+﻿using ContactsBook.Application.Features.Address.Queries.GetContactAddresses;
+using ContactsBook.Application.Features.Contact.Commands.CreateContact;
 using ContactsBook.Application.Features.Contact.Commands.UpdateContact;
 using ContactsBook.Application.Features.Contact.Queries.GetAllContacts;
 using ContactsBook.Application.Features.Contact.Queries.GetContactDetails;
@@ -62,6 +63,15 @@ namespace ContactsBook.Api.Controllers
             await _mediator.Send(new DeleteContactCommand(id));
 
             return Ok();
+        }
+
+        [HttpGet()]
+        [Route("addresses/{id}")]
+        public async Task<IActionResult> GetContactAddresses([FromRoute] int id)
+        {
+            var contacts = await _mediator.Send(new GetAddressesbyContactQuery(id));
+
+            return Ok(contacts);
         }
     }
 }

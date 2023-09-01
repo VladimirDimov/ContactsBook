@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
-using ContactsBook.Application.Features.Contact.Queries.GetAllContacts;
+using ContactsBook.Application.Features.Address.Queries.GetAddressDetails;
+using ContactsBook.Application.Features.Address.Queries.GetContactAddresses;
 using ContactsBook.Domain;
 
 namespace ContactsBook.Application.MappingProfiles

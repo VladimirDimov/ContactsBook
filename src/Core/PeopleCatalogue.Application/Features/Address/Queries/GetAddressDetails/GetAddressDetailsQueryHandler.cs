@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using MediatR;
 using ContactsBook.Application.Contracts.Persistence;
+using MediatR;
 
-namespace ContactsBook.Application.Features.Contact.Queries.GetAllContacts
+namespace ContactsBook.Application.Features.Address.Queries.GetAddressDetails
 {
     public class GetAddressDetailsQueryHandler : IRequestHandler<GetAddressDetailsQuery, AddressDetailsDto>
     {

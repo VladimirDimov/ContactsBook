@@ -1,4 +1,4 @@
-﻿namespace ContactsBook.Application.Features.Contact.Queries.GetAllContacts
+﻿namespace ContactsBook.Application.Features.Address.Queries.GetContactAddresses
 {
     public class AddressDto
     {

@@ -1,4 +1,5 @@
 ﻿using ContactsBook.Application.Features.Address.Commands.CreateAddress;
+using ContactsBook.Application.Features.Address.Queries.GetAddressDetails;
 using ContactsBook.Application.Features.Contact.Commands.CreateContact;
 using ContactsBook.Application.Features.Contact.Commands.UpdateContact;
 using ContactsBook.Application.Features.Contact.Queries.GetAllContacts;
@@ -24,13 +25,13 @@ namespace ContactsBook.Api.Controllers
             _logger = logger;
         }
 
-        //[HttpGet(Name = "GetAddresses")]
-        //public async Task<IActionResult> Get()
-        //{
-        //    var contacts = await _mediator.Send(new GetContactsQuery());
+        [HttpGet(Name = "GetAddresses")]
+        public async Task<IActionResult> Get(int id)
+        {
+            var contacts = await _mediator.Send(new GetAddressDetailsQuery(id));
 
-        //    return Ok(contacts);
-        //}
+            return Ok(contacts);
+        }
 
         //[HttpGet()]
         //[Route("{id}")]
