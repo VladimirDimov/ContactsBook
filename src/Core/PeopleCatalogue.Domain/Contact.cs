@@ -2,18 +2,18 @@
 {
     public class Contact : BaseEntity
     {
+        public Contact() { }
+
         public Contact(
             string firstName,
             string lastName,
             DateTime? dateOfBirth,
-            string? address,
             string? phoneNumber,
             string? iban)
         {
             FirstName = firstName;
             LastName = lastName;
             DateOfBirth = dateOfBirth;
-            Address = address;
             PhoneNumber = phoneNumber;
             Iban = iban;
         }
@@ -24,10 +24,15 @@
 
         public DateTime? DateOfBirth { get; private set; }
 
-        public string? Address { get; private set; }
+        public List<Address> Address { get; private set; } = new List<Address>();
 
         public string? PhoneNumber { get; private set; }
 
         public string? Iban { get; private set; }
+
+        public void AddAddress(Address address)
+        {
+            Address.Add(address);
+        }
     }
 }
