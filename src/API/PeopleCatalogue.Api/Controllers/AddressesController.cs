@@ -1,9 +1,6 @@
 ﻿using ContactsBook.Application.Features.Address.Commands.CreateAddress;
+using ContactsBook.Application.Features.Address.Commands.DeleteAddress;
 using ContactsBook.Application.Features.Address.Queries.GetAddressDetails;
-using ContactsBook.Application.Features.Contact.Commands.CreateContact;
-using ContactsBook.Application.Features.Contact.Commands.UpdateContact;
-using ContactsBook.Application.Features.Contact.Queries.GetAllContacts;
-using ContactsBook.Application.Features.Contact.Queries.GetContactDetails;
 using ContactsBook.Application.Features.Person.Commands.DeleteContact;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -25,7 +22,7 @@ namespace ContactsBook.Api.Controllers
             _logger = logger;
         }
 
-        [HttpGet(Name = "GetAddresses")]
+        [HttpGet(Name = "GetAddressDetails")]
         public async Task<IActionResult> Get(int id)
         {
             var contacts = await _mediator.Send(new GetAddressDetailsQuery(id));
@@ -34,25 +31,25 @@ namespace ContactsBook.Api.Controllers
         }
 
         [HttpPost()]
-        public async Task<IActionResult> CreateContact(CreateAddressCommand command)
+        public async Task<IActionResult> CreateAddress(CreateAddressCommand command)
         {
             var contactId = await _mediator.Send(command);
 
             return Created("", contactId);
         }
 
-        //[HttpPut()]
-        //public async Task<IActionResult> UpdateContact(UpdateContactCommand command)
-        //{
-        //    await _mediator.Send(command);
+        [HttpPut()]
+        public async Task<IActionResult> UpdateContact(UpdateAddressCommand command)
+        {
+            await _mediator.Send(command);
 
-        //    return Ok();
-        //}
+            return Ok();
+        }
 
         [HttpDelete()]
-        public async Task<IActionResult> UpdateContact(int id)
+        public async Task<IActionResult> DeleteAddress(int id)
         {
-            await _mediator.Send(new DeleteContactCommand(id));
+            await _mediator.Send(new DeleteAddressCommand(id));
 
             return Ok();
         }
