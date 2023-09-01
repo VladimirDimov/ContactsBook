@@ -1,6 +1,9 @@
 ﻿
+using ContactsBook.Api.Interceptors;
 using ContactsBook.Application;
 using ContactsBook.Persistence;
+using Microsoft.AspNetCore.Diagnostics;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ContactsBook.Api
 {
@@ -39,10 +42,11 @@ namespace ContactsBook.Api
                 app.UseSwaggerUI();
             }
 
+            app.UseMiddleware<ExceptionMiddleware>();
+
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 
