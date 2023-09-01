@@ -27,7 +27,8 @@ namespace ContactsBook.Persistence
             services.AddScoped<IDomainEventDispatcher, DomainEventDispatcher>();
 
             services.AddScoped<IHandle<AddressAddedEvent>, AddressAddedEventHandler>();
-            //services.AddScoped<IHandle<AddressDeletedEvent>, AddressDeletedEventHandler>();
+            services.AddScoped<IHandle<AddressDeletedEvent>, AddressDeletedEventHandler>();
+            services.AddScoped<IHandle<AddressUpdatedEvent>, AddressUpdatedEventHandler>();
 
             return services;
         }

@@ -8,22 +8,29 @@ namespace ContactsBook.Application.Features.Person.Commands.DeleteContact
     public class DeleteContactCommandHandler : IRequestHandler<DeleteContactCommand, Unit>
     {
         private readonly IMapper _mapper;
-        private readonly IContactRepository _personRepository;
+        private readonly IContactRepository _contactRepository;
+        private readonly IAddressRepository _addressRepository;
 
         public DeleteContactCommandHandler(
             IMapper mapper,
-            IContactRepository personRepository)
+            IContactRepository contactRepository,
+            IAddressRepository addressRepository)
         {
             _mapper = mapper;
-            _personRepository = personRepository;
+            _contactRepository = contactRepository;
+            _addressRepository = addressRepository;
         }
 
         public async Task<Unit> Handle(DeleteContactCommand request, CancellationToken cancellationToken)
         {
-            var person = await _personRepository.GetAsync(request.Id) ??
-                throw new NotFoundException(nameof(Contact), request.Id);
+            var address = await _addressRepository.GetAsync(request.Id)
+                ?? throw new NotFoundException(nameof(Domain.Address), request.Id);
 
-            await _personRepository.DeleteAsync(person);
+            var contact = await _contactRepository.GetAsync(address.ContactId);
+
+            contact.RemoveAddress(address);
+
+            await _contactRepository.UpdateAsync(contact);
 
             return Unit.Value;
         }
