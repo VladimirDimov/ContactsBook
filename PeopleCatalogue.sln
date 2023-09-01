@@ -5,21 +5,19 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{76A50AED-1544-4C76-9362-F858B3D4B989}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{CB8764E5-7E74-4C89-9653-90B3455FCAD5}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{6549A659-6001-40A7-882D-ADC2E100F361}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{6B061931-636B-4A3E-814E-91CCA2CA3DE2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{7B066470-E426-46F0-AEDB-131D68E39AAE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactsBook.Domain", "src\Core\PeopleCatalogue.Domain\ContactsBook.Domain.csproj", "{454E1E0D-296C-4E22-A445-F168722F1C0A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactsBook.Domain", "src\Core\PeopleCatalogue.Domain\ContactsBook.Domain.csproj", "{454E1E0D-296C-4E22-A445-F168722F1C0A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactsBook.Application", "src\Core\PeopleCatalogue.Application\ContactsBook.Application.csproj", "{223B6515-80E5-45F4-B582-4D9681EA36DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactsBook.Application", "src\Core\PeopleCatalogue.Application\ContactsBook.Application.csproj", "{223B6515-80E5-45F4-B582-4D9681EA36DB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactsBook.Persistence", "src\Infrastructure\PeopleCatalogue.Persistence\ContactsBook.Persistence.csproj", "{A1DCAB15-750A-482B-B4C5-A88A013DFAB7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactsBook.Api", "src\API\PeopleCatalogue.Api\ContactsBook.Api.csproj", "{045F8FAB-250D-4261-AA45-28AE8BD5ADEA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactsBook.Api", "src\API\PeopleCatalogue.Api\ContactsBook.Api.csproj", "{045F8FAB-250D-4261-AA45-28AE8BD5ADEA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,7 +46,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{CB8764E5-7E74-4C89-9653-90B3455FCAD5} = {76A50AED-1544-4C76-9362-F858B3D4B989}
 		{6549A659-6001-40A7-882D-ADC2E100F361} = {76A50AED-1544-4C76-9362-F858B3D4B989}
 		{6B061931-636B-4A3E-814E-91CCA2CA3DE2} = {76A50AED-1544-4C76-9362-F858B3D4B989}
 		{7B066470-E426-46F0-AEDB-131D68E39AAE} = {76A50AED-1544-4C76-9362-F858B3D4B989}
