@@ -1,10 +1,10 @@
 ﻿namespace ContactsBook.Domain.Events
 {
-    public class AddressAddedEvent : BaseDomainEvent
+    public class AddressDeletedEvent : BaseDomainEvent
     {
         public Address Entry { get; }
 
-        public AddressAddedEvent(Address entry)
+        public AddressDeletedEvent(Address entry)
         {
             Entry = entry;
         }

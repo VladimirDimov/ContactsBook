@@ -36,7 +36,26 @@ namespace ContactsBook.Domain
         {
             Address.Add(address);
 
-            Events.Add(new AddressAddedEvent(default, address));
+            Events.Add(new AddressAddedEvent(address));
+        }
+
+        public void UpdateAddress(Address address)
+        {
+            var addressToUpdate = Address.FirstOrDefault(a => a.Id == address.Id);
+
+            if (addressToUpdate is null)
+                return;
+
+            addressToUpdate = address;
+
+            Events.Add(new AddressUpdatedEvent(address));
+        }
+
+        public void RemoveAddress(Address address)
+        {
+            Address.Remove(address);
+
+            Events.Add(new AddressDeletedEvent(address));
         }
     }
 }

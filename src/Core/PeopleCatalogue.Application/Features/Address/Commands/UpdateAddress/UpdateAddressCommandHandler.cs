@@ -4,15 +4,15 @@ using ContactsBook.Application.Contracts.Persistence;
 using ContactsBook.Application.Exceptions;
 using ContactsBook.Application.Features.Address.Commands.CreateAddress;
 
-namespace ContactsBook.Application.Features.Contact.Commands.CreateContact
+namespace ContactsBook.Application.Features.Address.Commands.UpdateAddress
 {
-    public class CreateAddressCommandHandler : IRequestHandler<CreateAddressCommand, int>
+    public class UpdateAddressCommandHandler : IRequestHandler<UpdateAddressCommand, int>
     {
         private readonly IMapper _mapper;
         private readonly IContactRepository _contactRepository;
         private readonly IAddressRepository _addressRepository;
 
-        public CreateAddressCommandHandler(
+        public UpdateAddressCommandHandler(
             IMapper mapper,
             IContactRepository contactRepository,
             IAddressRepository addressRepository)
@@ -22,25 +22,25 @@ namespace ContactsBook.Application.Features.Contact.Commands.CreateContact
             _addressRepository = addressRepository;
         }
 
-        public async Task<int> Handle(CreateAddressCommand request, CancellationToken cancellationToken)
+        public async Task<int> Handle(UpdateAddressCommand request, CancellationToken cancellationToken)
         {
-            var validator = new CreateAddressCommandValidator();
+            var validator = new UpdateAddressCommandValidator();
             var validationResult = await validator.ValidateAsync(request, cancellationToken);
 
             if (!validationResult.IsValid)
                 throw new BadRequestException("Invalid address data", validationResult);
 
-            var address = new Domain.Address(request.Title, request.Country, request.City, request.Street, request.Number);
-            var contact = await _contactRepository.GetAsync(request.ContactId);
+            var address = await _addressRepository.GetAsync(request.Id)
+                ?? throw new NotFoundException(nameof(Domain.Address), request.Id);
 
-            if (contact is null)
-                throw new NotFoundException(nameof(Contact), request.ContactId);
+            var contact = await _contactRepository.GetAsync(request.ContactId)
+                ?? throw new NotFoundException(nameof(Contact), request.ContactId);
 
             contact.AddAddress(address);
 
-            await _contactRepository.UpdateAsync(contact);
+            var createdPerson = await _contactRepository.UpdateAsync(contact);
 
-            return address.Id;
+            return createdPerson.Id;
         }
     }
 }

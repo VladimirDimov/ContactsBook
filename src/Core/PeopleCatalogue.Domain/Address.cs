@@ -11,6 +11,7 @@
             string street,
             string? number)
         {
+            Title = title;
             Country = country;
             City = city;
             Street = street;

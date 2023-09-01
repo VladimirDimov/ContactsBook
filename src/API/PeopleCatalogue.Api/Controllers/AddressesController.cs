@@ -33,15 +33,6 @@ namespace ContactsBook.Api.Controllers
             return Ok(contacts);
         }
 
-        //[HttpGet()]
-        //[Route("{id}")]
-        //public async Task<IActionResult> GetContactDetails([FromRoute] int id)
-        //{
-        //    var contacts = await _mediator.Send(new GetContactDetailsQuery(id));
-
-        //    return Ok(contacts);
-        //}
-
         [HttpPost()]
         public async Task<IActionResult> CreateContact(CreateAddressCommand command)
         {
@@ -58,12 +49,12 @@ namespace ContactsBook.Api.Controllers
         //    return Ok();
         //}
 
-        //[HttpDelete()]
-        //public async Task<IActionResult> UpdateContact(int id)
-        //{
-        //    await _mediator.Send(new DeleteContactCommand(id));
+        [HttpDelete()]
+        public async Task<IActionResult> UpdateContact(int id)
+        {
+            await _mediator.Send(new DeleteContactCommand(id));
 
-        //    return Ok();
-        //}
+            return Ok();
+        }
     }
 }

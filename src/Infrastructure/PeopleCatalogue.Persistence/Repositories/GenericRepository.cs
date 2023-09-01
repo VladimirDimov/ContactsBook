@@ -55,5 +55,10 @@ namespace ContactsBook.Persistence.Repositories
 
             return entity;
         }
+
+        public async Task SaveAsync()
+        {
+            await _context.SaveChangesAsync();
+        }
     }
 }
