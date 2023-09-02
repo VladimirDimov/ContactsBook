@@ -18,6 +18,7 @@ namespace ContactsBook.Application.Features.Contact.Commands.CreateContact
                 .MaximumLength(30);
 
             RuleFor(m => m.PhoneNumber)
+                .NotEmpty()
                 .MaximumLength(20);
 
             RuleFor(m => m.Iban)

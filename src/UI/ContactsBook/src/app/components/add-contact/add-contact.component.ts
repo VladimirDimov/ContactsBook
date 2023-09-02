@@ -43,5 +43,12 @@ export class AddContactComponent implements OnInit {
 
   onSubmit() {
     console.log(this.form);
+    console.log(this.form.value);
+    this.form.reset();
+    this.close();
+  }
+
+  close() {
+    this.visible = false;
   }
 }

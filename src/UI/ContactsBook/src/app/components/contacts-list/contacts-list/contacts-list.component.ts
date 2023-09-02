@@ -18,7 +18,7 @@ import { selectCount } from 'src/app/store/selectors/counter.selectors';
 })
 export class ContactsListComponent implements OnInit, OnDestroy {
   count$: Observable<number>;
-  visible: boolean = true;
+  visible: boolean = false;
 
   constructor(
     private store: Store<ContactsBookStore>,
