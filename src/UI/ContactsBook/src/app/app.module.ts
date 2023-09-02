@@ -10,6 +10,8 @@ import { MenubarModule } from 'primeng/menubar';
 import { HeaderComponent } from './components/header/header/header.component';
 import { ContactsListComponent } from './components/contacts-list/contacts-list/contacts-list.component';
 import { StoreModule } from '@ngrx/store';
+import { counterReducer } from './store/counter.reducer';
+import { ContactsBookStore } from './store/reducer.interfaces';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, ContactsListComponent],
@@ -20,7 +22,9 @@ import { StoreModule } from '@ngrx/store';
     MenuModule,
     MegaMenuModule,
     MenubarModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot<ContactsBookStore>({
+      counter: counterReducer,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],
