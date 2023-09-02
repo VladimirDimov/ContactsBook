@@ -22,6 +22,7 @@ import { ContatsBookEffects } from './store/effects/contacts-book.effects';
 import { ApiClientService } from './shared/api-client.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TreeTableModule } from 'primeng/treetable';
+import { contactsReducer } from './store/contacts.reducer';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { TreeTableModule } from 'primeng/treetable';
     TreeTableModule,
     StoreModule.forRoot<ContactsBookStore>({
       counter: counterReducer,
+      contacts: contactsReducer,
     }),
     EffectsModule.forRoot([CounterEffects, ContatsBookEffects]),
   ],

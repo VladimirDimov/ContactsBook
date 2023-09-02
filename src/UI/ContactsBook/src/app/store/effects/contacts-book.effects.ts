@@ -1,13 +1,16 @@
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { tap } from 'rxjs';
+import { tap, switchMap, map, catchError } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { ContactsBookStore } from '../reducer.interfaces';
 import { Store } from '@ngrx/store';
 import {
   loadContactsAction,
+  loadContactsFailAction,
+  loadContactsSuccessAction,
   submitContactAction,
 } from '../actions/contacts-book.actions';
 import { ApiClientService } from 'src/app/shared/api-client.service';
+import { of } from 'rxjs/internal/observable/of';
 
 @Injectable()
 export class ContatsBookEffects {
@@ -33,11 +36,21 @@ export class ContatsBookEffects {
     () =>
       this.actions$.pipe(
         ofType(loadContactsAction),
-        tap((action) => {
-          console.log('from effects: ', action);
-          this.apiClientService.getAllContacts();
+        // tap((action) => {
+        //   console.log('from effects: ', action);
+        //   this.apiClientService.getAllContacts().subscribe((res) => {
+        //     console.log('from effect', res);
+        //   });
+        // }),
+        switchMap((action) => {
+          return this.apiClientService.getAllContacts().pipe(
+            map((products) => {
+              return loadContactsSuccessAction({ value: products });
+            }),
+            catchError((err) => of(loadContactsFailAction(err)))
+          );
         })
       ),
-    { dispatch: false }
+    { dispatch: true }
   );
 }

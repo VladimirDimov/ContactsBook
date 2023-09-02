@@ -6,10 +6,11 @@ import {
   MessageService,
   TreeNode,
 } from 'primeng/api';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { loadContactsAction } from 'src/app/store/actions/contacts-book.actions';
 import { increment, decrement } from 'src/app/store/actions/counter.actions';
 import { ContactsBookStore } from 'src/app/store/reducer.interfaces';
+import { contactsSelector } from 'src/app/store/selectors/contacts.selectors';
 import { selectCount } from 'src/app/store/selectors/counter.selectors';
 
 interface Column {
@@ -28,6 +29,7 @@ export class ContactsListComponent implements OnInit, OnDestroy {
   visible: boolean = false;
   files!: TreeNode[];
   cols!: Column[];
+  contacts$: Observable<any> = new Observable<any>();
 
   constructor(
     private store: Store<ContactsBookStore>,
@@ -47,6 +49,10 @@ export class ContactsListComponent implements OnInit, OnDestroy {
     ];
 
     this.store.dispatch(loadContactsAction());
+    this.contacts$ = this.store.select(contactsSelector);
+    this.contacts$.subscribe((res) => {
+      debugger;
+    });
   }
 
   addContact() {
