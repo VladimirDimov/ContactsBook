@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { ContactsBookStore } from '../reducer.interfaces';
 import { Store } from '@ngrx/store';
 import { submitContactAction } from '../actions/contacts-book.actions';
-import { ApiClientService } from 'src/app/shared/data-storage.service';
+import { ApiClientService } from 'src/app/shared/api-client.service';
 
 @Injectable()
 export class ContatsBookEffects {

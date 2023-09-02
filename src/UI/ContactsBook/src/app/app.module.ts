@@ -19,7 +19,7 @@ import { DialogModule } from 'primeng/dialog';
 import { AddContactComponent } from './components/add-contact/add-contact.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ContatsBookEffects } from './store/effects/contacts-book.effects';
-import { ApiClientService } from './shared/data-storage.service';
+import { ApiClientService } from './shared/api-client.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
