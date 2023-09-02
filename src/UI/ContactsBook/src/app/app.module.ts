@@ -9,6 +9,7 @@ import { MegaMenuModule } from 'primeng/megamenu';
 import { MenubarModule } from 'primeng/menubar';
 import { HeaderComponent } from './components/header/header/header.component';
 import { ContactsListComponent } from './components/contacts-list/contacts-list/contacts-list.component';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, ContactsListComponent],
@@ -19,6 +20,7 @@ import { ContactsListComponent } from './components/contacts-list/contacts-list/
     MenuModule,
     MegaMenuModule,
     MenubarModule,
+    StoreModule.forRoot({}, {}),
   ],
   providers: [],
   bootstrap: [AppComponent],
