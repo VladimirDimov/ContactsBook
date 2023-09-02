@@ -1,12 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
-import {
-  ConfirmEventType,
-  ConfirmationService,
-  MessageService,
-  TreeNode,
-} from 'primeng/api';
-import { Observable, tap } from 'rxjs';
+import { ConfirmationService, MessageService, TreeNode } from 'primeng/api';
+import { Observable } from 'rxjs';
+import { ContactModel } from 'src/app/models/contact.model';
 import { loadContactsAction } from 'src/app/store/actions/contacts-book.actions';
 import { increment, decrement } from 'src/app/store/actions/counter.actions';
 import { ContactsBookStore } from 'src/app/store/reducer.interfaces';
@@ -29,26 +25,22 @@ export class ContactsListComponent implements OnInit, OnDestroy {
   cols!: Column[];
   contacts$: Observable<any> = new Observable<any>();
 
-  constructor(
-    private store: Store<ContactsBookStore>,
-    private confirmationService: ConfirmationService,
-    private messageService: MessageService
-  ) {}
+  constructor(private store: Store<ContactsBookStore>) {}
 
   ngOnDestroy(): void {}
 
   ngOnInit(): void {
     this.cols = [
-      { field: 'name', header: 'Name' },
-      { field: 'size', header: 'Size' },
-      { field: 'type', header: 'Type' },
+      { field: 'firstName', header: 'First Name' },
+      { field: 'lastName', header: 'Last Name' },
+      { field: 'dateOfBirth', header: 'Birth Date' },
     ];
 
     this.store.dispatch(loadContactsAction());
     this.contacts$ = this.store.select(contactsSelector);
-    this.contacts$.subscribe((res) => {
-      debugger;
-    });
+    // this.contacts$.subscribe((contacts: ContactModel[]) => {
+    //   this.files = contacts.map((c) => TreeNo);
+    // });
   }
 
   addContact() {

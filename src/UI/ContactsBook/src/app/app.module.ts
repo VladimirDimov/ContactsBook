@@ -22,6 +22,7 @@ import { ApiClientService } from './shared/api-client.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TreeTableModule } from 'primeng/treetable';
 import { contactsReducer } from './store/contacts.reducer';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { contactsReducer } from './store/contacts.reducer';
     DialogModule,
     ReactiveFormsModule,
     TreeTableModule,
+    TableModule,
     StoreModule.forRoot({
       counterStore: counterReducer,
       contactStore: contactsReducer,

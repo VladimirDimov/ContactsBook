@@ -7,60 +7,31 @@
 <app-add-contact [(visible)]="visible"></app-add-contact>
 
 <div class="card">
-  <p-treeTable
-    [value]="files"
-    [columns]="cols"
-    [scrollable]="true"
-    [tableStyle]="{ 'min-width': '50rem' }"
-  >
-    <ng-template pTemplate="caption"> FileViewer </ng-template>
-    <ng-template pTemplate="header" let-columns>
+  <p-button
+    (click)="addContact()"
+    icon="pi pi-plus"
+    label="Add New Contact"
+  ></p-button>
+  <p-table [value]="contacts$ | async" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="header">
       <tr>
-        <th *ngFor="let col of columns">
-          {{ col.header }}
-        </th>
-        <th style="width: 10rem">
-          <p-button icon="pi pi-cog"></p-button>
-        </th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Birth Date</th>
+        <th>Phone</th>
+        <th>Iban</th>
       </tr>
     </ng-template>
-    <ng-template
-      pTemplate="body"
-      let-rowNode
-      let-rowData="rowData"
-      let-columns="columns"
-    >
+    <ng-template pTemplate="body" let-contact>
       <tr>
-        <td *ngFor="let col of columns; let i = index">
-          <p-treeTableToggler
-            [rowNode]="rowNode"
-            *ngIf="i === 0"
-          ></p-treeTableToggler>
-          {{ rowData[col.field] }}
-        </td>
-        <td>
-          <p-button
-            icon="pi pi-search"
-            styleClass="p-button-success"
-            [style]="{ 'margin-right': '.5em' }"
-          ></p-button>
-          <p-button
-            icon="pi pi-pencil"
-            styleClass="p-button-warning"
-          ></p-button>
-        </td>
+        <td>{{ contact.firstName }}</td>
+        <td>{{ contact.lastName }}</td>
+        <td>{{ contact.birthDate }}</td>
+        <td>{{ contact.phoneNumber }}</td>
+        <td>{{ contact.iban }}</td>
       </tr>
     </ng-template>
-    <ng-template pTemplate="summary">
-      <div style="text-align: left">
-        <p-button
-          (click)="addContact()"
-          icon="pi pi-plus"
-          label="Add New Contact"
-        ></p-button>
-      </div>
-    </ng-template>
-  </p-treeTable>
+  </p-table>
 </div>
 
 {{ contacts$ | async | json }}
