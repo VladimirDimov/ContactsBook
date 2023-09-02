@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { ContactsBookStore } from '../reducer.interfaces';
 import { Store } from '@ngrx/store';
 import {
+  createContactSuccessAction,
   loadContactsAction,
   loadContactsFailAction,
   loadContactsSuccessAction,
@@ -26,7 +27,18 @@ export class ContatsBookEffects {
         ofType(submitContactAction),
         tap((action) => {
           console.log('from effects: ', action);
-          this.apiClientService.addNewContact(action.value);
+          this.apiClientService
+            .addNewContact(action.value)
+            .pipe(
+              map((response) => {
+                const createdContact = { ...action.value, id: response };
+                this.store.dispatch(
+                  createContactSuccessAction({ value: createdContact })
+                );
+              }),
+              catchError((err) => of(loadContactsFailAction(err)))
+            )
+            .subscribe();
         })
       ),
     { dispatch: false }
@@ -36,12 +48,6 @@ export class ContatsBookEffects {
     () =>
       this.actions$.pipe(
         ofType(loadContactsAction),
-        // tap((action) => {
-        //   console.log('from effects: ', action);
-        //   this.apiClientService.getAllContacts().subscribe((res) => {
-        //     console.log('from effect', res);
-        //   });
-        // }),
         switchMap((action) => {
           return this.apiClientService.getAllContacts().pipe(
             map((products) => {

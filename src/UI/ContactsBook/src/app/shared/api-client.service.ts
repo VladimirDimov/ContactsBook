@@ -10,18 +10,11 @@ export class ApiClientService {
 
   constructor(private http: HttpClient) {}
 
-  addNewContact(contact: ContactCreateModel) {
-    this.http
-      .post(this.baseUrl + '/contacts', contact)
-      .subscribe((response) => {
-        console.log('response: ', response);
-      });
+  addNewContact(contact: ContactCreateModel): Observable<any> {
+    return this.http.post(this.baseUrl + '/contacts', contact);
   }
 
   getAllContacts(): Observable<any> {
     return this.http.get(this.baseUrl + '/contacts');
-    // .subscribe((response) => {
-    //   console.log('response: ', response);
-    // });
   }
 }

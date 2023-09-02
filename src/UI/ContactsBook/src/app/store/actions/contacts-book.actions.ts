@@ -13,6 +13,11 @@ export const loadContactsSuccessAction = createAction(
   props<{ value: ContactModel[] }>()
 );
 
+export const createContactSuccessAction = createAction(
+  '[ContactsBook] Create Contact Success',
+  props<{ value: ContactModel }>()
+);
+
 export const loadContactsFailAction = createAction(
   '[ContactsBook] Load Contacts Fail',
   props<{ value: number }>()
