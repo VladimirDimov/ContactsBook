@@ -8,7 +8,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MegaMenuModule } from 'primeng/megamenu';
 import { MenubarModule } from 'primeng/menubar';
 import { HeaderComponent } from './components/header/header/header.component';
-import { ContactsListComponent } from './components/contacts-list/contacts-list/contacts-list.component';
 import { StoreModule } from '@ngrx/store';
 import { ContactsBookStore } from './store/reducer.interfaces';
 import { EffectsModule } from '@ngrx/effects';
@@ -22,6 +21,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TreeTableModule } from 'primeng/treetable';
 import { contactsReducer } from './store/contacts.reducer';
 import { TableModule } from 'primeng/table';
+import { ContactsListComponent } from './components/contacts-list/contacts-list.component';
 
 @NgModule({
   declarations: [

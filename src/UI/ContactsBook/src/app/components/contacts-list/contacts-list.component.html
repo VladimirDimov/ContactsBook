@@ -22,13 +22,14 @@
       <tr>
         <td>{{ contact.firstName }}</td>
         <td>{{ contact.lastName }}</td>
-        <td>{{ contact.birthDate }}</td>
+        <td>{{ contact.dateOfBirth | date }}</td>
         <td>{{ contact.phoneNumber }}</td>
         <td>{{ contact.iban }}</td>
         <td>
           <p-button
             label="Address"
             styleClass="p-button p-button-info"
+            (onClick)="onViewAddresses(contact.id)"
           ></p-button>
           <p-button
             icon="pi pi-trash"

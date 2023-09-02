@@ -42,4 +42,8 @@ export class ContactsListComponent implements OnInit, OnDestroy {
     console.log('add contact clicked');
     this.visible = true;
   }
+
+  onViewAddresses(contactId: number) {
+    console.log(contactId);
+  }
 }
