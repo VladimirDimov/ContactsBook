@@ -14,9 +14,12 @@ import { counterReducer } from './store/counter.reducer';
 import { ContactsBookStore } from './store/reducer.interfaces';
 import { EffectsModule } from '@ngrx/effects';
 import { CounterEffects } from './store/effects/counter.effects';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { DialogModule } from 'primeng/dialog';
+import { AddContactComponent } from './components/add-contact/add-contact.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, ContactsListComponent],
+  declarations: [AppComponent, HeaderComponent, ContactsListComponent, AddContactComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -24,6 +27,8 @@ import { CounterEffects } from './store/effects/counter.effects';
     MenuModule,
     MegaMenuModule,
     MenubarModule,
+    ConfirmDialogModule,
+    DialogModule,
     StoreModule.forRoot<ContactsBookStore>({
       counter: counterReducer,
     }),
