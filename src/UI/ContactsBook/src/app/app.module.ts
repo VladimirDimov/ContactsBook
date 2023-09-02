@@ -8,9 +8,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MegaMenuModule } from 'primeng/megamenu';
 import { MenubarModule } from 'primeng/menubar';
 import { HeaderComponent } from './components/header/header/header.component';
+import { ContactsListComponent } from './components/contacts-list/contacts-list/contacts-list.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent],
+  declarations: [AppComponent, HeaderComponent, ContactsListComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
