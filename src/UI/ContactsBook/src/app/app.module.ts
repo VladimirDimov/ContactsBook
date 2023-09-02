@@ -7,9 +7,10 @@ import { MenuModule } from 'primeng/menu';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MegaMenuModule } from 'primeng/megamenu';
 import { MenubarModule } from 'primeng/menubar';
+import { HeaderComponent } from './src/app/components/header/header/header.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, HeaderComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
