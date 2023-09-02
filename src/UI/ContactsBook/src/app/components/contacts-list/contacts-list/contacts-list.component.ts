@@ -11,7 +11,6 @@ import { loadContactsAction } from 'src/app/store/actions/contacts-book.actions'
 import { increment, decrement } from 'src/app/store/actions/counter.actions';
 import { ContactsBookStore } from 'src/app/store/reducer.interfaces';
 import { contactsSelector } from 'src/app/store/selectors/contacts.selectors';
-import { selectCount } from 'src/app/store/selectors/counter.selectors';
 
 interface Column {
   field: string;
@@ -25,7 +24,6 @@ interface Column {
   providers: [ConfirmationService, MessageService],
 })
 export class ContactsListComponent implements OnInit, OnDestroy {
-  count$: Observable<number>;
   visible: boolean = false;
   files!: TreeNode[];
   cols!: Column[];
@@ -35,9 +33,7 @@ export class ContactsListComponent implements OnInit, OnDestroy {
     private store: Store<ContactsBookStore>,
     private confirmationService: ConfirmationService,
     private messageService: MessageService
-  ) {
-    this.count$ = store.select(selectCount);
-  }
+  ) {}
 
   ngOnDestroy(): void {}
 

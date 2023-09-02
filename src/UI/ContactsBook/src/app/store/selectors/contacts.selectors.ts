@@ -1,6 +1,5 @@
 import { ContactsBookStore } from '../reducer.interfaces';
 
-export const contactsSelector = (state: ContactsBookStore) => {
-  debugger;
-  return state.contacts;
+export const contactsSelector = (state: any) => {
+  return state.contactStore.contacts;
 };

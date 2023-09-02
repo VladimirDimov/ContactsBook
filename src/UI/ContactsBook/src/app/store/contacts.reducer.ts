@@ -3,7 +3,6 @@ import { ContactsBookStore } from './reducer.interfaces';
 import { loadContactsSuccessAction } from './actions/contacts-book.actions';
 
 const initialState: ContactsBookStore = {
-  counter: 1,
   contacts: [],
 };
 

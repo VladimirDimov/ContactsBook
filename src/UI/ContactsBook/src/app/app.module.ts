@@ -13,7 +13,6 @@ import { StoreModule } from '@ngrx/store';
 import { counterReducer } from './store/counter.reducer';
 import { ContactsBookStore } from './store/reducer.interfaces';
 import { EffectsModule } from '@ngrx/effects';
-import { CounterEffects } from './store/effects/counter.effects';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DialogModule } from 'primeng/dialog';
 import { AddContactComponent } from './components/add-contact/add-contact.component';
@@ -43,11 +42,11 @@ import { contactsReducer } from './store/contacts.reducer';
     DialogModule,
     ReactiveFormsModule,
     TreeTableModule,
-    StoreModule.forRoot<ContactsBookStore>({
-      counter: counterReducer,
-      contacts: contactsReducer,
+    StoreModule.forRoot({
+      counterStore: counterReducer,
+      contactStore: contactsReducer,
     }),
-    EffectsModule.forRoot([CounterEffects, ContatsBookEffects]),
+    EffectsModule.forRoot([ContatsBookEffects]),
   ],
   providers: [ApiClientService, HttpClient],
   bootstrap: [AppComponent],
