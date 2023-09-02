@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
+import { ContactCreateModel } from 'src/app/models/contact.model';
 import { submitContactAction } from 'src/app/store/actions/contacts-book.actions';
 import { ContactsBookStore } from 'src/app/store/reducer.interfaces';
 
@@ -47,7 +48,9 @@ export class AddContactComponent implements OnInit {
   @Output() visibleChange = new EventEmitter<boolean>();
 
   onSubmit() {
-    this.store.dispatch(submitContactAction(this.form.value));
+    const formValue = this.form.value as ContactCreateModel;
+
+    this.store.dispatch(submitContactAction({ value: formValue }));
 
     this.form.reset();
     this.close();

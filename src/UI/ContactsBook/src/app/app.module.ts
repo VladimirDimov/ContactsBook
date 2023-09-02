@@ -19,6 +19,8 @@ import { DialogModule } from 'primeng/dialog';
 import { AddContactComponent } from './components/add-contact/add-contact.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ContatsBookEffects } from './store/effects/contacts-book.effects';
+import { ApiClientService } from './shared/data-storage.service';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { ContatsBookEffects } from './store/effects/contacts-book.effects';
     AddContactComponent,
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
@@ -42,7 +45,7 @@ import { ContatsBookEffects } from './store/effects/contacts-book.effects';
     }),
     EffectsModule.forRoot([CounterEffects, ContatsBookEffects]),
   ],
-  providers: [],
+  providers: [ApiClientService, HttpClient],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

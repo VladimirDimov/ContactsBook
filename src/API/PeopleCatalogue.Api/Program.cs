@@ -42,6 +42,8 @@ namespace ContactsBook.Api
                 app.UseSwaggerUI();
             }
 
+            app.UseCors("all");
+
             app.UseMiddleware<ExceptionMiddleware>();
 
             app.UseHttpsRedirection();

@@ -8,10 +8,10 @@ namespace ContactsBook.Application.Features.Contact.Commands.CreateContact
 
         public string LastName { get; set; }
 
-        public DateTime DateOfBirth { get; set; }
+        public DateTime? DateOfBirth { get; set; }
 
         public string PhoneNumber { get; set; }
 
-        public string Iban { get; set; }
+        public string? Iban { get; set; }
     }
 }
