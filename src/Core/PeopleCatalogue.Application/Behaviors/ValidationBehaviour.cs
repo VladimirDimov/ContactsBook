@@ -29,7 +29,7 @@ namespace ContactsBook.Application.Behaviors
                     .ToList();
 
                 if (failures.Any())
-                    throw new Application.Exceptions.ValidationException(failures);
+                    throw new Exceptions.ValidationException(failures);
             }
             return await next();
         }
