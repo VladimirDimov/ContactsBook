@@ -2,9 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ConfirmationService, MessageService, TreeNode } from 'primeng/api';
 import { Observable } from 'rxjs';
-import { ContactModel } from 'src/app/models/contact.model';
 import { loadContactsAction } from 'src/app/store/actions/contacts-book.actions';
-import { increment, decrement } from 'src/app/store/actions/counter.actions';
 import { ContactsBookStore } from 'src/app/store/reducer.interfaces';
 import { contactsSelector } from 'src/app/store/selectors/contacts.selectors';
 
@@ -38,22 +36,10 @@ export class ContactsListComponent implements OnInit, OnDestroy {
 
     this.store.dispatch(loadContactsAction());
     this.contacts$ = this.store.select(contactsSelector);
-    // this.contacts$.subscribe((contacts: ContactModel[]) => {
-    //   this.files = contacts.map((c) => TreeNo);
-    // });
   }
 
   addContact() {
     console.log('add contact clicked');
     this.visible = true;
-  }
-
-  public increment() {
-    console.log('Increment');
-    this.store.dispatch(increment({ value: 2 }));
-  }
-  public decrement() {
-    console.log('Decrement');
-    this.store.dispatch(decrement({ value: 2 }));
   }
 }

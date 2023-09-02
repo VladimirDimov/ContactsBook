@@ -10,7 +10,6 @@ import { MenubarModule } from 'primeng/menubar';
 import { HeaderComponent } from './components/header/header/header.component';
 import { ContactsListComponent } from './components/contacts-list/contacts-list/contacts-list.component';
 import { StoreModule } from '@ngrx/store';
-import { counterReducer } from './store/counter.reducer';
 import { ContactsBookStore } from './store/reducer.interfaces';
 import { EffectsModule } from '@ngrx/effects';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
@@ -45,7 +44,6 @@ import { TableModule } from 'primeng/table';
     TreeTableModule,
     TableModule,
     StoreModule.forRoot({
-      counterStore: counterReducer,
       contactStore: contactsReducer,
     }),
     EffectsModule.forRoot([ContatsBookEffects]),
