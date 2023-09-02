@@ -17,9 +17,15 @@ import { CounterEffects } from './store/effects/counter.effects';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DialogModule } from 'primeng/dialog';
 import { AddContactComponent } from './components/add-contact/add-contact.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, ContactsListComponent, AddContactComponent],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    ContactsListComponent,
+    AddContactComponent,
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -29,6 +35,7 @@ import { AddContactComponent } from './components/add-contact/add-contact.compon
     MenubarModule,
     ConfirmDialogModule,
     DialogModule,
+    ReactiveFormsModule,
     StoreModule.forRoot<ContactsBookStore>({
       counter: counterReducer,
     }),

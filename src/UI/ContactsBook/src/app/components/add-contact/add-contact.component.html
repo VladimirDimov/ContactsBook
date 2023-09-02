@@ -1,20 +1,94 @@
-<p-dialog header="Header" [(visible)]="visible" [style]="{ width: '50vw' }">
+<p-dialog
+  header="Header"
+  [(visible)]="visible"
+  [style]="{ width: '50vw' }"
+  header="Add New Contact"
+>
   <div class="card">
-    <div class="field">
-      <label for="firstname1">Firstname</label>
-      <input
-        id="firstname1"
-        type="text"
-        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-      />
-    </div>
-    <div class="field">
-      <label for="lastname1">Lastname</label>
-      <input
-        id="lastname1"
-        type="text"
-        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-      />
-    </div>
+    <form [formGroup]="form" (submit)="onSubmit()">
+      <div class="field">
+        <label for="firstName">First Name</label>
+        <input
+          formControlName="firstName"
+          id="firstName"
+          type="text"
+          class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+        />
+        <small
+          *ngIf="form.get('firstName')?.errors?.['required']"
+          class="p-invalid"
+          >Email is required.</small
+        >
+        <small
+          *ngIf="form.get('firstName')?.errors?.['maxlength']"
+          class="p-invalid"
+          >Email is too long.</small
+        >
+      </div>
+      <div class="field">
+        <label for="lastName">Last Name</label>
+        <input
+          id="lastName"
+          formControlName="lastName"
+          type="text"
+          class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+        />
+        <small
+          *ngIf="form.get('lastName')?.errors?.['required']"
+          class="p-invalid"
+          >Email is required.</small
+        >
+        <small
+          *ngIf="form.get('lastName')?.errors?.['maxlength']"
+          class="p-invalid"
+          >Email is too long.</small
+        >
+      </div>
+
+      <div class="field">
+        <label for="dateOfBirth">Birth Date</label>
+        <input
+          id="dateOfBirth"
+          formControlName="dateOfBirth"
+          type="date"
+          class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+        />
+      </div>
+
+      <div class="field">
+        <label for="phoneNumber">Phone Number</label>
+        <input
+          id="phoneNumber"
+          formControlName="phoneNumber"
+          type="text"
+          class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+        />
+        <small
+          *ngIf="form.get('phoneNumber')?.errors?.['maxlength']"
+          class="p-invalid"
+          >Phone Number is too long.</small
+        >
+      </div>
+
+      <div class="field">
+        <label for="iban">IBAN</label>
+        <input
+          id="iban"
+          formControlName="iban"
+          type="text"
+          class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+        />
+        <small *ngIf="form.get('iban')?.errors?.['maxlength']" class="p-invalid"
+          >IBAN is too long.</small
+        >
+      </div>
+      <div>
+        <p-button
+          type="submit"
+          label="Submit"
+          [disabled]="!this.form.valid"
+        ></p-button>
+      </div>
+    </form>
   </div>
 </p-dialog>
