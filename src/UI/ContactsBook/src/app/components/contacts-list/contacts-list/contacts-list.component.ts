@@ -4,11 +4,18 @@ import {
   ConfirmEventType,
   ConfirmationService,
   MessageService,
+  TreeNode,
 } from 'primeng/api';
 import { Observable } from 'rxjs';
+import { loadContactsAction } from 'src/app/store/actions/contacts-book.actions';
 import { increment, decrement } from 'src/app/store/actions/counter.actions';
 import { ContactsBookStore } from 'src/app/store/reducer.interfaces';
 import { selectCount } from 'src/app/store/selectors/counter.selectors';
+
+interface Column {
+  field: string;
+  header: string;
+}
 
 @Component({
   selector: 'app-contacts-list',
@@ -19,6 +26,8 @@ import { selectCount } from 'src/app/store/selectors/counter.selectors';
 export class ContactsListComponent implements OnInit, OnDestroy {
   count$: Observable<number>;
   visible: boolean = false;
+  files!: TreeNode[];
+  cols!: Column[];
 
   constructor(
     private store: Store<ContactsBookStore>,
@@ -30,7 +39,15 @@ export class ContactsListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.cols = [
+      { field: 'name', header: 'Name' },
+      { field: 'size', header: 'Size' },
+      { field: 'type', header: 'Type' },
+    ];
+
+    this.store.dispatch(loadContactsAction());
+  }
 
   addContact() {
     console.log('add contact clicked');

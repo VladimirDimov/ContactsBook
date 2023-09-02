@@ -16,4 +16,10 @@ export class ApiClientService {
         console.log('response: ', response);
       });
   }
+
+  getAllContacts() {
+    this.http.get(this.baseUrl + '/contacts').subscribe((response) => {
+      console.log('response: ', response);
+    });
+  }
 }

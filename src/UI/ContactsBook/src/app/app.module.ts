@@ -21,6 +21,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ContatsBookEffects } from './store/effects/contacts-book.effects';
 import { ApiClientService } from './shared/api-client.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { TreeTableModule } from 'primeng/treetable';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     ConfirmDialogModule,
     DialogModule,
     ReactiveFormsModule,
+    TreeTableModule,
     StoreModule.forRoot<ContactsBookStore>({
       counter: counterReducer,
     }),
