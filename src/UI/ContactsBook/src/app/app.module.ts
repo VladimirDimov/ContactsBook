@@ -12,6 +12,8 @@ import { ContactsListComponent } from './components/contacts-list/contacts-list/
 import { StoreModule } from '@ngrx/store';
 import { counterReducer } from './store/counter.reducer';
 import { ContactsBookStore } from './store/reducer.interfaces';
+import { EffectsModule } from '@ngrx/effects';
+import { CounterEffects } from './store/effects/counter.effects';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, ContactsListComponent],
@@ -25,6 +27,7 @@ import { ContactsBookStore } from './store/reducer.interfaces';
     StoreModule.forRoot<ContactsBookStore>({
       counter: counterReducer,
     }),
+    EffectsModule.forRoot([CounterEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent],
