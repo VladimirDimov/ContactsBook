@@ -18,6 +18,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DialogModule } from 'primeng/dialog';
 import { AddContactComponent } from './components/add-contact/add-contact.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ContatsBookEffects } from './store/effects/contacts-book.effects';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     StoreModule.forRoot<ContactsBookStore>({
       counter: counterReducer,
     }),
-    EffectsModule.forRoot([CounterEffects]),
+    EffectsModule.forRoot([CounterEffects, ContatsBookEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent],

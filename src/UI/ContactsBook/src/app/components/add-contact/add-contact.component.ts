@@ -1,5 +1,8 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { submitContactAction } from 'src/app/store/actions/contacts-book.actions';
+import { ContactsBookStore } from 'src/app/store/reducer.interfaces';
 
 @Component({
   selector: 'app-add-contact',
@@ -9,6 +12,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class AddContactComponent implements OnInit {
   private _visible: boolean = false;
   form: FormGroup<any> = new FormGroup({});
+
+  constructor(private store: Store<ContactsBookStore>) {}
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -42,8 +47,8 @@ export class AddContactComponent implements OnInit {
   @Output() visibleChange = new EventEmitter<boolean>();
 
   onSubmit() {
-    console.log(this.form);
-    console.log(this.form.value);
+    this.store.dispatch(submitContactAction(this.form.value));
+
     this.form.reset();
     this.close();
   }
