@@ -128,6 +128,7 @@
           <th>
             <input
               id="title"
+              placeholder="Title"
               formControlName="title"
               type="text"
               class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
@@ -136,6 +137,7 @@
           <th>
             <input
               id="country"
+              placeholder="Country"
               formControlName="country"
               type="text"
               class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
@@ -144,6 +146,7 @@
           <th>
             <input
               id="city"
+              placeholder="City"
               formControlName="city"
               type="text"
               class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
@@ -152,6 +155,7 @@
           <th>
             <input
               id="street"
+              placeholder="Street"
               formControlName="street"
               type="text"
               class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
@@ -159,14 +163,20 @@
           </th>
           <th>
             <input
-              id="title"
-              formControlName="title"
+              id="number"
+              placeholder="Number"
+              formControlName="number"
               type="text"
               class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
             />
           </th>
           <td>
-            <p-button icon="pi pi-plus" styleClass="p-button"></p-button>
+            <p-button
+              icon="pi pi-plus"
+              styleClass="p-button"
+              (click)="addAddress()"
+              [disabled]="!addAddressForm.valid"
+            ></p-button>
           </td>
         </tr>
       </ng-template>

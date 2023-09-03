@@ -82,4 +82,9 @@ export class ContactDetailsComponent implements OnInit {
   }
 
   onSubmit() {}
+
+  addAddress() {
+    console.log(this.addAddressForm);
+    this.addAddressForm.reset();
+  }
 }
