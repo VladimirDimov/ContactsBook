@@ -22,6 +22,7 @@ import { TreeTableModule } from 'primeng/treetable';
 import { contactsReducer } from './store/contacts.reducer';
 import { TableModule } from 'primeng/table';
 import { ContactsListComponent } from './components/contacts-list/contacts-list.component';
+import { ContactDetailsComponent } from './components/contact-details/contact-details.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ContactsListComponent } from './components/contacts-list/contacts-list.
     HeaderComponent,
     ContactsListComponent,
     AddContactComponent,
+    ContactDetailsComponent,
   ],
   imports: [
     HttpClientModule,
