@@ -110,22 +110,17 @@
     </div>
   </form>
 
+  <div class="delimiter"></div>
+
   <form [formGroup]="addAddressForm">
     <p-table
+      id="tbl-address"
       *ngIf="addresses$"
       [value]="(addresses$ | async) || []"
       [tableStyle]="{ 'min-width': '50rem' }"
     >
+      <ng-template pTemplate="caption"> Addresses </ng-template>
       <ng-template pTemplate="header">
-        <tr>
-          <th>Title</th>
-          <th>Country</th>
-          <th>City</th>
-          <th>Street</th>
-          <th>Number</th>
-          <th></th>
-        </tr> </ng-template
-      ><ng-template pTemplate="footer">
         <tr>
           <th>
             <input
@@ -172,7 +167,7 @@
               class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
             />
           </th>
-          <td>
+          <td class="add-address-header">
             <p-button
               icon="pi pi-plus"
               styleClass="p-button"
@@ -184,7 +179,7 @@
       </ng-template>
       <ng-template pTemplate="body" let-address>
         <tr>
-          <td>{{ address.title }}</td>
+          <th class="title">{{ address.title }}</th>
           <td>{{ address.country }}</td>
           <td>{{ address.city }}</td>
           <td>{{ address.street }}</td>
