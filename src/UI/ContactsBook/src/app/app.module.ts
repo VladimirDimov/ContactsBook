@@ -27,6 +27,14 @@ import { CardModule } from 'primeng/card';
 import { CalendarModule } from 'primeng/calendar';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { RouterModule, Routes } from '@angular/router';
+import { AboutComponent } from './components/about/about.component';
+
+const appRoutes: Routes = [
+  { path: '', component: ContactsListComponent },
+  { path: 'home', component: ContactsListComponent },
+  { path: 'about', component: AboutComponent },
+];
 
 @NgModule({
   declarations: [
@@ -56,6 +64,7 @@ import { MessageService } from 'primeng/api';
       contactStore: contactsReducer,
     }),
     EffectsModule.forRoot([ContatsBookEffects]),
+    RouterModule.forRoot(appRoutes),
   ],
   providers: [ApiClientService, HttpClient, MessageService],
   bootstrap: [AppComponent],
