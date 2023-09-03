@@ -17,4 +17,8 @@ export class ApiClientService {
   getAllContacts(): Observable<any> {
     return this.http.get(this.baseUrl + '/contacts');
   }
+
+  getContactAddresses(contactId: number): Observable<any> {
+    return this.http.get(this.baseUrl + `/contacts/addresses/${contactId}`);
+  }
 }

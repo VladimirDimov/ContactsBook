@@ -5,6 +5,8 @@ import { ContactsBookStore } from '../reducer.interfaces';
 import { Store } from '@ngrx/store';
 import {
   createContactSuccessAction,
+  getContactAddressesAction,
+  getContactAddressesSuccessAction,
   loadContactsAction,
   loadContactsFailAction,
   loadContactsSuccessAction,
@@ -55,6 +57,24 @@ export class ContatsBookEffects {
             }),
             catchError((err) => of(loadContactsFailAction(err)))
           );
+        })
+      ),
+    { dispatch: true }
+  );
+
+  getContactAddresses = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(getContactAddressesAction),
+        switchMap((action) => {
+          return this.apiClientService
+            .getContactAddresses(action.contactId)
+            .pipe(
+              map((addresses) => {
+                return getContactAddressesSuccessAction({ value: addresses });
+              }),
+              catchError((err) => of(loadContactsFailAction(err)))
+            );
         })
       ),
     { dispatch: true }

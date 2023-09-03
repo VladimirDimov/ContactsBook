@@ -13,3 +13,13 @@ export interface ContactModel {
   phoneNumber: Text;
   iban: string;
 }
+
+export interface AddressModel {
+  id: number;
+  title: string;
+  country: string;
+  city: string;
+  street: string;
+  number: string;
+  contactId: number;
+}

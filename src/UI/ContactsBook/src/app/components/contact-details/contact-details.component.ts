@@ -1,5 +1,11 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { AddressModel } from 'src/app/models/contact.model';
+import { getContactAddressesAction } from 'src/app/store/actions/contacts-book.actions';
+import { ContactsBookStore } from 'src/app/store/reducer.interfaces';
+import { contactAddressesSelector } from 'src/app/store/selectors/contacts.selectors';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-contact-details',
@@ -8,6 +14,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class ContactDetailsComponent implements OnInit {
   private _contactId: number = 0;
+
   @Input()
   public get contactId(): number {
     return this._contactId;
@@ -15,11 +22,20 @@ export class ContactDetailsComponent implements OnInit {
 
   public set contactId(value: number) {
     this._contactId = value;
+
+    if (this._contactId !== 0) {
+      this.store.dispatch(
+        getContactAddressesAction({ contactId: this.contactId })
+      );
+    }
   }
 
   @Output() contactIdChange = new EventEmitter<number>();
 
   contactUpdateForm: FormGroup<any> = new FormGroup({});
+  addresses$: Observable<AddressModel[]> = new Observable<AddressModel[]>();
+
+  constructor(private store: Store<ContactsBookStore>) {}
 
   ngOnInit(): void {
     this.contactUpdateForm = new FormGroup({
@@ -38,6 +54,8 @@ export class ContactDetailsComponent implements OnInit {
       ]),
       iban: new FormControl(null, [Validators.maxLength(34)]),
     });
+
+    this.addresses$ = this.store.select(contactAddressesSelector);
   }
 
   onSubmit() {}

@@ -1,5 +1,9 @@
 import { createAction, props } from '@ngrx/store';
-import { ContactCreateModel, ContactModel } from 'src/app/models/contact.model';
+import {
+  AddressModel,
+  ContactCreateModel,
+  ContactModel,
+} from 'src/app/models/contact.model';
 
 export const submitContactAction = createAction(
   '[ContactsBook] Submit Contact',
@@ -21,4 +25,14 @@ export const createContactSuccessAction = createAction(
 export const loadContactsFailAction = createAction(
   '[ContactsBook] Load Contacts Fail',
   props<{ value: number }>()
+);
+
+export const getContactAddressesAction = createAction(
+  '[ContactsBook] Get contact addresses',
+  props<{ contactId: number }>()
+);
+
+export const getContactAddressesSuccessAction = createAction(
+  '[ContactsBook] Get contact addresses success',
+  props<{ value: AddressModel[] }>()
 );
