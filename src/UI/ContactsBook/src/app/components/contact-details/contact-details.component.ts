@@ -22,6 +22,7 @@ export class ContactDetailsComponent implements OnInit {
 
   public set contactId(value: number) {
     this._contactId = value;
+    this.visible = value != 0;
 
     if (this._contactId !== 0) {
       this.store.dispatch(
@@ -33,7 +34,9 @@ export class ContactDetailsComponent implements OnInit {
   @Output() contactIdChange = new EventEmitter<number>();
 
   contactUpdateForm: FormGroup<any> = new FormGroup({});
+  addAddressForm: FormGroup<any> = new FormGroup({});
   addresses$: Observable<AddressModel[]> = new Observable<AddressModel[]>();
+  visible: boolean = false;
 
   constructor(private store: Store<ContactsBookStore>) {}
 
@@ -53,6 +56,26 @@ export class ContactDetailsComponent implements OnInit {
         Validators.maxLength(20),
       ]),
       iban: new FormControl(null, [Validators.maxLength(34)]),
+    });
+
+    this.addAddressForm = new FormGroup({
+      title: new FormControl(null, [
+        Validators.required,
+        Validators.maxLength(30),
+      ]),
+      country: new FormControl(null, [
+        Validators.required,
+        Validators.maxLength(30),
+      ]),
+      city: new FormControl(null, [
+        Validators.required,
+        Validators.maxLength(30),
+      ]),
+      street: new FormControl(null, [
+        Validators.required,
+        Validators.maxLength(30),
+      ]),
+      number: new FormControl(null, [Validators.maxLength(20)]),
     });
 
     this.addresses$ = this.store.select(contactAddressesSelector);

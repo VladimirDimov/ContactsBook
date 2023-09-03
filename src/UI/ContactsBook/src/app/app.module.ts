@@ -23,6 +23,7 @@ import { contactsReducer } from './store/contacts.reducer';
 import { TableModule } from 'primeng/table';
 import { ContactsListComponent } from './components/contacts-list/contacts-list.component';
 import { ContactDetailsComponent } from './components/contact-details/contact-details.component';
+import { CardModule } from 'primeng/card';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { ContactDetailsComponent } from './components/contact-details/contact-de
     ReactiveFormsModule,
     TreeTableModule,
     TableModule,
+    CardModule,
     StoreModule.forRoot({
       contactStore: contactsReducer,
     }),
