@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ContactCreateModel } from '../models/contact.model';
+import { AddressModel, ContactCreateModel } from '../models/contact.model';
 import { configurations } from '../configurations';
 import { Observable } from 'rxjs';
 
@@ -20,5 +20,9 @@ export class ApiClientService {
 
   getContactAddresses(contactId: number): Observable<any> {
     return this.http.get(this.baseUrl + `/contacts/addresses/${contactId}`);
+  }
+
+  addNewAddress(address: AddressModel): Observable<any> {
+    return this.http.post(this.baseUrl + '/addresses', address);
   }
 }

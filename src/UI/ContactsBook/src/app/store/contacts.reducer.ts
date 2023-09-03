@@ -1,6 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { ContactsBookStore } from './reducer.interfaces';
 import {
+  createAddressSuccessAction,
   createContactSuccessAction,
   getContactAddressesSuccessAction,
   loadContactsSuccessAction,
@@ -23,7 +24,11 @@ export const contactsReducer = createReducer(
   }),
 
   on(getContactAddressesSuccessAction, (state, action) => {
-    let contacts = [...state.contacts];
     return { ...state, contactAddresses: action.value };
+  }),
+
+  on(createAddressSuccessAction, (state, action) => {
+    let contactAddresses = [...state.contactAddresses, action.value];
+    return { ...state, contactAddresses: contactAddresses };
   })
 );

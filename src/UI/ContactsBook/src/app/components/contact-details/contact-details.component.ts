@@ -2,7 +2,10 @@ import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AddressModel } from 'src/app/models/contact.model';
-import { getContactAddressesAction } from 'src/app/store/actions/contacts-book.actions';
+import {
+  createAddressAction,
+  getContactAddressesAction,
+} from 'src/app/store/actions/contacts-book.actions';
 import { ContactsBookStore } from 'src/app/store/reducer.interfaces';
 import { contactAddressesSelector } from 'src/app/store/selectors/contacts.selectors';
 import { Observable } from 'rxjs';
@@ -23,6 +26,7 @@ export class ContactDetailsComponent implements OnInit {
   public set contactId(value: number) {
     this._contactId = value;
     this.visible = value != 0;
+    this.addAddressForm.patchValue({ contactId: value });
 
     if (this._contactId !== 0) {
       this.store.dispatch(
@@ -59,6 +63,7 @@ export class ContactDetailsComponent implements OnInit {
     });
 
     this.addAddressForm = new FormGroup({
+      contactId: new FormControl(this.contactId, [Validators.required]),
       title: new FormControl(null, [
         Validators.required,
         Validators.maxLength(30),
@@ -84,7 +89,9 @@ export class ContactDetailsComponent implements OnInit {
   onSubmit() {}
 
   addAddress() {
-    console.log(this.addAddressForm);
+    console.log(this.addAddressForm.value);
+    const newAddress = this.addAddressForm.value as AddressModel;
+    this.store.dispatch(createAddressAction({ value: newAddress }));
     this.addAddressForm.reset();
   }
 }

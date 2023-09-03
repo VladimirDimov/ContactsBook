@@ -36,3 +36,13 @@ export const getContactAddressesSuccessAction = createAction(
   '[ContactsBook] Get contact addresses success',
   props<{ value: AddressModel[] }>()
 );
+
+export const createAddressAction = createAction(
+  '[ContactsBook] Create Address',
+  props<{ value: AddressModel }>()
+);
+
+export const createAddressSuccessAction = createAction(
+  '[ContactsBook] Create Address Success',
+  props<{ value: AddressModel }>()
+);

@@ -4,6 +4,8 @@ import { Injectable } from '@angular/core';
 import { ContactsBookStore } from '../reducer.interfaces';
 import { Store } from '@ngrx/store';
 import {
+  createAddressAction,
+  createAddressSuccessAction,
   createContactSuccessAction,
   getContactAddressesAction,
   getContactAddressesSuccessAction,
@@ -78,5 +80,28 @@ export class ContatsBookEffects {
         })
       ),
     { dispatch: true }
+  );
+
+  submitNewAddressForm = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(createAddressAction),
+        tap((action) => {
+          console.log('from effects: ', action);
+          this.apiClientService
+            .addNewAddress(action.value)
+            .pipe(
+              map((response) => {
+                const createdAddress = { ...action.value, id: response };
+                this.store.dispatch(
+                  createAddressSuccessAction({ value: createdAddress })
+                );
+              }),
+              catchError((err) => of(loadContactsFailAction(err)))
+            )
+            .subscribe();
+        })
+      ),
+    { dispatch: false }
   );
 }
