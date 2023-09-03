@@ -22,6 +22,7 @@ export class ContactsListComponent implements OnInit, OnDestroy {
   files!: TreeNode[];
   cols!: Column[];
   contacts$: Observable<any> = new Observable<any>();
+  contactDetailsId: number = 0;
 
   constructor(private store: Store<ContactsBookStore>) {}
 
@@ -44,6 +45,6 @@ export class ContactsListComponent implements OnInit, OnDestroy {
   }
 
   onViewAddresses(contactId: number) {
-    console.log(contactId);
+    this.contactDetailsId = contactId;
   }
 }

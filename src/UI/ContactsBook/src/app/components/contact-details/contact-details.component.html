@@ -1,1 +1,7 @@
-<p>contact-details works!</p>
+<p-dialog
+  [visible]="contactId !== 0"
+  [style]="{ width: '50vw' }"
+  header="Add New Contact"
+>
+  contact ID: {{ contactId }}
+</p-dialog>
