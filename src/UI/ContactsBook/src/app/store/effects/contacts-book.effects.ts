@@ -11,6 +11,7 @@ import {
   deleteAddressSuccessAction,
   deleteContactAction,
   deleteContactSuccessAction,
+  errorMessageAction,
   getContactAddressesAction,
   getContactAddressesSuccessAction,
   getContactDetailsAction,
@@ -19,18 +20,21 @@ import {
   loadContactsFailAction,
   loadContactsSuccessAction,
   submitContactAction,
+  successMessageAction,
   updateContactAction,
   updateContactSuccessAction,
 } from '../actions/contacts-book.actions';
 import { ApiClientService } from 'src/app/shared/api-client.service';
 import { of } from 'rxjs/internal/observable/of';
+import { MessageService } from 'primeng/api';
 
 @Injectable()
 export class ContatsBookEffects {
   constructor(
     private actions$: Actions,
     private store: Store<ContactsBookStore>,
-    private apiClientService: ApiClientService
+    private apiClientService: ApiClientService,
+    private messageService: MessageService
   ) {}
 
   submitNewContactForm = createEffect(
@@ -48,7 +52,10 @@ export class ContatsBookEffects {
                   createContactSuccessAction({ value: createdContact })
                 );
               }),
-              catchError((err) => of(loadContactsFailAction(err)))
+              catchError((err: any) => {
+                debugger;
+                return of(errorMessageAction({ value: '' }));
+              })
             )
             .subscribe();
         })
@@ -142,8 +149,13 @@ export class ContatsBookEffects {
                 this.store.dispatch(
                   updateContactSuccessAction({ value: action.value })
                 );
+                this.store.dispatch(
+                  successMessageAction({ value: 'Contact updated' })
+                );
               }),
-              catchError((err) => of(loadContactsFailAction(err)))
+              catchError((err) =>
+                of(errorMessageAction({ value: 'Unable to update contact' }))
+              )
             )
             .subscribe();
         })
@@ -187,9 +199,47 @@ export class ContatsBookEffects {
                   deleteContactSuccessAction({ value: action.value })
                 );
               }),
-              catchError((err) => of(loadContactsFailAction(err)))
+              catchError((err) => {
+                this.store.dispatch(
+                  errorMessageAction({ value: 'Unable to delete contact' })
+                );
+
+                return of();
+              })
             )
             .subscribe();
+        })
+      ),
+    { dispatch: false }
+  );
+
+  successMessageEffect = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(successMessageAction),
+        tap((action) => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: action.value,
+            closable: false,
+          });
+        })
+      ),
+    { dispatch: false }
+  );
+
+  errorMessageEffect = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(errorMessageAction),
+        tap((action) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: action.value,
+            closable: false,
+          });
         })
       ),
     { dispatch: false }

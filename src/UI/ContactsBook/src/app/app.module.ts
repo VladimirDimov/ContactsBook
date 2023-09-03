@@ -25,6 +25,8 @@ import { ContactsListComponent } from './components/contacts-list/contacts-list.
 import { ContactDetailsComponent } from './components/contact-details/contact-details.component';
 import { CardModule } from 'primeng/card';
 import { CalendarModule } from 'primeng/calendar';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -49,12 +51,13 @@ import { CalendarModule } from 'primeng/calendar';
     TableModule,
     CardModule,
     CalendarModule,
+    ToastModule,
     StoreModule.forRoot({
       contactStore: contactsReducer,
     }),
     EffectsModule.forRoot([ContatsBookEffects]),
   ],
-  providers: [ApiClientService, HttpClient],
+  providers: [ApiClientService, HttpClient, MessageService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

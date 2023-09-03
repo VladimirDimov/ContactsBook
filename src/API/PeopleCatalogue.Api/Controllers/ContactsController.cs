@@ -4,6 +4,8 @@ using ContactsBook.Application.Features.Contact.Commands.UpdateContact;
 using ContactsBook.Application.Features.Contact.Queries.GetAllContacts;
 using ContactsBook.Application.Features.Contact.Queries.GetContactDetails;
 using ContactsBook.Application.Features.Person.Commands.DeleteContact;
+using FluentValidation;
+using FluentValidation.Results;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -60,6 +62,9 @@ namespace ContactsBook.Api.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteContact(int id)
         {
+            throw new Application.Exceptions.ValidationException(new List<ValidationFailure> {
+                new ValidationFailure("Contact", $"Not existing contact id {id}. this is a test exception")
+            });
             await _mediator.Send(new DeleteContactCommand(id));
 
             return Ok();

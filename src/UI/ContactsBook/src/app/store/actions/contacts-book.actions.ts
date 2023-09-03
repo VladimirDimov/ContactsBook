@@ -86,3 +86,13 @@ export const deleteContactSuccessAction = createAction(
   '[ContactsBook] Delete Contact Success',
   props<{ value: number }>()
 );
+
+export const successMessageAction = createAction(
+  '[Common] Success Message',
+  props<{ value: string }>()
+);
+
+export const errorMessageAction = createAction(
+  '[Common] Error Message',
+  props<{ value: string }>()
+);
