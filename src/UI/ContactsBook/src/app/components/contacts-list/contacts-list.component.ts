@@ -19,6 +19,7 @@ interface Column {
 })
 export class ContactsListComponent implements OnInit, OnDestroy {
   visible: boolean = false;
+  detailsVisible: boolean = false;
   files!: TreeNode[];
   cols!: Column[];
   contacts$: Observable<any> = new Observable<any>();
@@ -46,5 +47,6 @@ export class ContactsListComponent implements OnInit, OnDestroy {
 
   onViewAddresses(contactId: number) {
     this.contactDetailsId = contactId;
+    this.detailsVisible = true;
   }
 }

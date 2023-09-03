@@ -11,7 +11,6 @@ import { ContactsBookStore } from 'src/app/store/reducer.interfaces';
   styleUrls: ['./add-contact.component.scss'],
 })
 export class AddContactComponent implements OnInit {
-  private _visible: boolean = false;
   form: FormGroup<any> = new FormGroup({});
 
   constructor(private store: Store<ContactsBookStore>) {}
@@ -35,16 +34,15 @@ export class AddContactComponent implements OnInit {
     });
   }
 
+  private _visible: boolean = false;
   @Input()
   public get visible(): boolean {
     return this._visible;
   }
-
   public set visible(value: boolean) {
     this._visible = value;
     this.visibleChange.emit(value);
   }
-
   @Output() visibleChange = new EventEmitter<boolean>();
 
   onSubmit() {

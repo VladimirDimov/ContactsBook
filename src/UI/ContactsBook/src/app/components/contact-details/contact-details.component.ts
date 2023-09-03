@@ -31,7 +31,6 @@ export class ContactDetailsComponent implements OnInit {
 
   public set contactId(value: number) {
     this._contactId = value;
-    this.visible = value != 0;
     this.addAddressForm.patchValue({ contactId: value });
 
     if (this._contactId > 0) {
@@ -47,7 +46,17 @@ export class ContactDetailsComponent implements OnInit {
   contactUpdateForm: FormGroup<any> = new FormGroup({});
   addAddressForm: FormGroup<any> = new FormGroup({});
   addresses$: Observable<AddressModel[]> = new Observable<AddressModel[]>();
-  visible: boolean = false;
+
+  private _visible: boolean = false;
+  @Input()
+  public get visible(): boolean {
+    return this._visible;
+  }
+  public set visible(value: boolean) {
+    this._visible = value;
+    this.visibleChange.emit(value);
+  }
+  @Output() visibleChange = new EventEmitter<boolean>();
 
   constructor(private store: Store<ContactsBookStore>) {}
 
