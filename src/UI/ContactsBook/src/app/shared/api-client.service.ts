@@ -37,4 +37,8 @@ export class ApiClientService {
   updateContact(contact: ContactModel): Observable<any> {
     return this.http.put(this.baseUrl + '/contacts', contact);
   }
+
+  deleteAddress(id: number): Observable<any> {
+    return this.http.delete(this.baseUrl + `/addresses?id=${id}`);
+  }
 }

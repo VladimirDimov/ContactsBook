@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { AddressModel, ContactModel } from 'src/app/models/contact.model';
 import {
   createAddressAction,
+  deleteAddressAction,
   getContactAddressesAction,
   getContactDetailsAction,
   updateContactAction,
@@ -112,5 +113,9 @@ export class ContactDetailsComponent implements OnInit {
     const newAddress = this.addAddressForm.value as AddressModel;
     this.store.dispatch(createAddressAction({ value: newAddress }));
     this.addAddressForm.reset();
+  }
+
+  deleteAddress(address: AddressModel) {
+    this.store.dispatch(deleteAddressAction({ value: address.id }));
   }
 }

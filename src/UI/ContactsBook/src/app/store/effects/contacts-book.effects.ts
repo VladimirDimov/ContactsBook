@@ -7,6 +7,8 @@ import {
   createAddressAction,
   createAddressSuccessAction,
   createContactSuccessAction,
+  deleteAddressAction,
+  deleteAddressSuccessAction,
   getContactAddressesAction,
   getContactAddressesSuccessAction,
   getContactDetailsAction,
@@ -137,6 +139,28 @@ export class ContatsBookEffects {
               map((_) => {
                 this.store.dispatch(
                   updateContactSuccessAction({ value: action.value })
+                );
+              }),
+              catchError((err) => of(loadContactsFailAction(err)))
+            )
+            .subscribe();
+        })
+      ),
+    { dispatch: false }
+  );
+
+  deleteAddressEffect = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(deleteAddressAction),
+        tap((action) => {
+          console.log('from effects: ', action);
+          this.apiClientService
+            .deleteAddress(action.value)
+            .pipe(
+              map((_) => {
+                this.store.dispatch(
+                  deleteAddressSuccessAction({ value: action.value })
                 );
               }),
               catchError((err) => of(loadContactsFailAction(err)))

@@ -3,6 +3,7 @@ import { ContactsBookStore } from './reducer.interfaces';
 import {
   createAddressSuccessAction,
   createContactSuccessAction,
+  deleteAddressSuccessAction,
   getContactAddressesSuccessAction,
   getContactDetailsSuccessAction,
   loadContactsSuccessAction,
@@ -48,5 +49,13 @@ export const contactsReducer = createReducer(
     );
 
     return { ...state, contacts: contacts };
+  }),
+
+  on(deleteAddressSuccessAction, (state, action) => {
+    const addresses = [...state.contactAddresses].filter(
+      (a) => a.id !== action.value
+    );
+
+    return { ...state, contactAddresses: addresses };
   })
 );

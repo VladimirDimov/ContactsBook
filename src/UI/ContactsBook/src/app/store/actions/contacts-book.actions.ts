@@ -66,3 +66,13 @@ export const updateContactSuccessAction = createAction(
   '[ContactsBook] Update Contact Success',
   props<{ value: ContactModel }>()
 );
+
+export const deleteAddressAction = createAction(
+  '[ContactsBook] Delete Address',
+  props<{ value: number }>()
+);
+
+export const deleteAddressSuccessAction = createAction(
+  '[ContactsBook] Delete Address Success',
+  props<{ value: number }>()
+);
