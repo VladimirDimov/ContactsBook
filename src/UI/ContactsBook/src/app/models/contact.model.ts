@@ -13,6 +13,7 @@ export interface ContactModel {
   dateOfBirth: Date;
   phoneNumber: Text;
   iban: string;
+  address: AddressModel[];
 }
 
 export class ContactModel implements ContactModel {
@@ -22,6 +23,7 @@ export class ContactModel implements ContactModel {
   public dateOfBirth!: Date;
   public phoneNumber!: Text;
   public iban!: string;
+  public address!: AddressModel[];
 }
 
 export interface AddressModel {

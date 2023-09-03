@@ -45,7 +45,11 @@ export class ContatsBookEffects {
           console.log('from effects: ', action);
           return this.apiClientService.addNewContact(action.value).pipe(
             map((response) => {
-              const createdContact = { ...action.value, id: response };
+              const createdContact = {
+                ...action.value,
+                id: response,
+                address: [],
+              };
               return this.store.dispatch(
                 createContactSuccessAction({ value: createdContact })
               );
@@ -177,8 +181,11 @@ export class ContatsBookEffects {
           console.log('from effects: ', action);
           return this.apiClientService.deleteAddress(action.value).pipe(
             map((_) => {
-              return this.store.dispatch(
+              this.store.dispatch(
                 deleteAddressSuccessAction({ value: action.value })
+              );
+              this.store.dispatch(
+                successMessageAction({ value: 'Address deleted' })
               );
             }),
             catchError((err) =>

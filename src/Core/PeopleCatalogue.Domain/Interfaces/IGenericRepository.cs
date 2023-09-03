@@ -7,6 +7,7 @@ namespace ContactsBook.Domain.Interfaces
     {
         Task<T?> GetAsync(int id);
         Task<IReadOnlyList<T>> GetAsync();
+        Task<IReadOnlyList<T>> GetAsync(params string[] includes);
         Task<T> CreateAsync(T entity);
         Task<T> UpdateAsync(T entity);
         Task<T> DeleteAsync(T entity);

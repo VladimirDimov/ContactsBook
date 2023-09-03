@@ -26,7 +26,7 @@ export const contactsReducer = createReducer(
   }),
 
   on(createContactSuccessAction, (state, action) => {
-    let contacts = [...state.contacts, action.value];
+    const contacts = [...state.contacts, action.value];
     return { ...state, contacts };
   }),
 
@@ -35,8 +35,20 @@ export const contactsReducer = createReducer(
   }),
 
   on(createAddressSuccessAction, (state, action) => {
-    let contactAddresses = [...state.contactAddresses, action.value];
-    return { ...state, contactAddresses: contactAddresses };
+    const contactAddresses = [...state.contactAddresses, action.value];
+    let updatedContacts = JSON.parse(
+      JSON.stringify(state.contacts)
+    ) as ContactModel[];
+    updatedContacts.map((c) => {
+      if (c.id == action.value.contactId) {
+        c.address = [...c.address, action.value];
+      }
+    });
+    return {
+      ...state,
+      contactAddresses: contactAddresses,
+      contacts: updatedContacts,
+    };
   }),
 
   on(getContactDetailsSuccessAction, (state, action) => {
@@ -57,7 +69,16 @@ export const contactsReducer = createReducer(
       (a) => a.id !== action.value
     );
 
-    return { ...state, contactAddresses: addresses };
+    let contacts = JSON.parse(JSON.stringify(state.contacts)) as ContactModel[];
+    contacts = contacts.map((contact) => {
+      contact.address = contact.address.filter(
+        (add) => add.id !== action.value
+      );
+
+      return contact;
+    });
+
+    return { ...state, contactAddresses: addresses, contacts: contacts };
   }),
 
   on(deleteContactSuccessAction, (state, action) => {

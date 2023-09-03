@@ -21,7 +21,7 @@ namespace ContactsBook.Application.Features.Contact.Queries.GetAllContacts
             GetContactsQuery request,
             CancellationToken cancellationToken)
         {
-            var people = await _contactRepository.GetAsync();
+            var people = await _contactRepository.GetAsync(nameof(Domain.Contact.Address));
             var data = _mapper.Map<List<ContactDto>>(people);
 
             return data;

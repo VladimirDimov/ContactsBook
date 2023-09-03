@@ -1,4 +1,6 @@
-﻿namespace ContactsBook.Application.Features.Contact.Queries.GetAllContacts
+﻿using ContactsBook.Application.Features.Address.Queries.GetContactAddresses;
+
+namespace ContactsBook.Application.Features.Contact.Queries.GetAllContacts
 {
     public class ContactDto
     {
@@ -13,5 +15,7 @@
         public string PhoneNumber { get; set; }
 
         public string Iban { get; set; }
+
+        public IEnumerable<AddressDto> Address { get; set; }
     }
 }

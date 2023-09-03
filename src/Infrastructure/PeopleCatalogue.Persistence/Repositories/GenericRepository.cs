@@ -46,6 +46,18 @@ namespace ContactsBook.Persistence.Repositories
             return await _context.Set<T>().AsNoTracking().ToListAsync();
         }
 
+        public async Task<IReadOnlyList<T>> GetAsync(params string[] includes)
+        {
+            var query = _context.Set<T>().AsQueryable();
+
+            foreach (var inc in includes)
+            {
+                query = query.Include(inc);
+            }
+
+            return await query.AsNoTracking().ToListAsync();
+        }
+
         public async Task<T> UpdateAsync(T entity)
         {
             _context.Update(entity);

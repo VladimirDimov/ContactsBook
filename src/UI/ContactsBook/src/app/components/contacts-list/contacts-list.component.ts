@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ConfirmationService, MessageService, TreeNode } from 'primeng/api';
-import { Observable } from 'rxjs';
+import { Observable, map, pipe } from 'rxjs';
+import { ContactModel } from 'src/app/models/contact.model';
 import {
   deleteContactAction,
   loadContactsAction,
@@ -26,6 +27,7 @@ export class ContactsListComponent implements OnInit, OnDestroy {
   files!: TreeNode[];
   cols!: Column[];
   contacts$: Observable<any> = new Observable<any>();
+  contacts: any[] = [];
   contactDetailsId: number = 0;
 
   constructor(private store: Store<ContactsBookStore>) {}
@@ -40,7 +42,19 @@ export class ContactsListComponent implements OnInit, OnDestroy {
     ];
 
     this.store.dispatch(loadContactsAction());
-    this.contacts$ = this.store.select(contactsSelector);
+    this.store
+      .select(contactsSelector)
+      .subscribe((contacts: ContactModel[]) => {
+        this.contacts = contacts.map((c) => ({
+          ...c,
+          addressFormatted: c.address.map((add) => ({
+            title: add.title,
+            address: [add.country, add.city, add.street, add.number]
+              .filter((part) => !!part)
+              .join(', '),
+          })),
+        }));
+      });
   }
 
   addContact() {

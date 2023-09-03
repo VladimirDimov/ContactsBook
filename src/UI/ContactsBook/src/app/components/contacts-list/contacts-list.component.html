@@ -6,12 +6,7 @@
 ></app-contact-details>
 
 <div class="card">
-  <p-button
-    (click)="addContact()"
-    icon="pi pi-plus"
-    label="Add New Contact"
-  ></p-button>
-  <p-table [value]="contacts$ | async" [tableStyle]="{ 'min-width': '50rem' }">
+  <p-table [value]="contacts" [tableStyle]="{ 'min-width': '50rem' }">
     <ng-template pTemplate="header">
       <tr>
         <th>First Name</th>
@@ -19,7 +14,15 @@
         <th>Birth Date</th>
         <th>Phone</th>
         <th>Iban</th>
-        <th></th>
+        <th>Addresses</th>
+        <th>
+          <p-button
+            (click)="addContact()"
+            icon="pi pi-plus"
+            label="Add Contact"
+            class="btn-action"
+          ></p-button>
+        </th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-contact>
@@ -29,6 +32,11 @@
         <td>{{ contact.dateOfBirth | date }}</td>
         <td>{{ contact.phoneNumber }}</td>
         <td>{{ contact.iban }}</td>
+        <td>
+          <div *ngFor="let addr of contact.addressFormatted">
+            <strong>{{ addr.title }}: </strong>{{ addr.address }}
+          </div>
+        </td>
         <td>
           <p-button
             icon="pi pi-pencil"
