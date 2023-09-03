@@ -25,4 +25,8 @@ export class ApiClientService {
   addNewAddress(address: AddressModel): Observable<any> {
     return this.http.post(this.baseUrl + '/addresses', address);
   }
+
+  getContactDetails(contactId: number): Observable<any> {
+    return this.http.get(this.baseUrl + `/contacts/${contactId}`);
+  }
 }

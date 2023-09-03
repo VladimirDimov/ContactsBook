@@ -14,6 +14,14 @@ export interface ContactModel {
   iban: string;
 }
 
+export class ContactModel implements ContactModel {
+  public firstName!: string;
+  public lastName!: string;
+  public dateOfBirth!: Date;
+  public phoneNumber!: Text;
+  public iban!: string;
+}
+
 export interface AddressModel {
   id: number;
   title: string;

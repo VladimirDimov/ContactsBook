@@ -7,3 +7,7 @@ export const contactsSelector = (state: any) => {
 export const contactAddressesSelector = (state: any) => {
   return state.contactStore.contactAddresses;
 };
+
+export const contactDetailsSelector = (state: any) => {
+  return state.contactStore.contactDetails;
+};

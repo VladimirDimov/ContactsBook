@@ -4,12 +4,16 @@ import {
   createAddressSuccessAction,
   createContactSuccessAction,
   getContactAddressesSuccessAction,
+  getContactDetailsSuccessAction,
   loadContactsSuccessAction,
 } from './actions/contacts-book.actions';
+
+import { ContactModel } from '../models/contact.model';
 
 const initialState: ContactsBookStore = {
   contacts: [],
   contactAddresses: [],
+  contactDetails: new ContactModel(),
 };
 
 export const contactsReducer = createReducer(
@@ -30,5 +34,9 @@ export const contactsReducer = createReducer(
   on(createAddressSuccessAction, (state, action) => {
     let contactAddresses = [...state.contactAddresses, action.value];
     return { ...state, contactAddresses: contactAddresses };
+  }),
+
+  on(getContactDetailsSuccessAction, (state, action) => {
+    return { ...state, contactDetails: action.value };
   })
 );

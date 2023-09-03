@@ -9,6 +9,8 @@ import {
   createContactSuccessAction,
   getContactAddressesAction,
   getContactAddressesSuccessAction,
+  getContactDetailsAction,
+  getContactDetailsSuccessAction,
   loadContactsAction,
   loadContactsFailAction,
   loadContactsSuccessAction,
@@ -103,5 +105,21 @@ export class ContatsBookEffects {
         })
       ),
     { dispatch: false }
+  );
+
+  getContactDetailsEffect = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(getContactDetailsAction),
+        switchMap((action) => {
+          return this.apiClientService.getContactDetails(action.value).pipe(
+            map((contactDetails) => {
+              return getContactDetailsSuccessAction({ value: contactDetails });
+            }),
+            catchError((err) => of(loadContactsFailAction(err)))
+          );
+        })
+      ),
+    { dispatch: true }
   );
 }

@@ -5,9 +5,13 @@ import { AddressModel } from 'src/app/models/contact.model';
 import {
   createAddressAction,
   getContactAddressesAction,
+  getContactDetailsAction,
 } from 'src/app/store/actions/contacts-book.actions';
 import { ContactsBookStore } from 'src/app/store/reducer.interfaces';
-import { contactAddressesSelector } from 'src/app/store/selectors/contacts.selectors';
+import {
+  contactAddressesSelector,
+  contactDetailsSelector,
+} from 'src/app/store/selectors/contacts.selectors';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -28,10 +32,11 @@ export class ContactDetailsComponent implements OnInit {
     this.visible = value != 0;
     this.addAddressForm.patchValue({ contactId: value });
 
-    if (this._contactId !== 0) {
+    if (this._contactId > 0) {
       this.store.dispatch(
         getContactAddressesAction({ contactId: this.contactId })
       );
+      this.store.dispatch(getContactDetailsAction({ value: this.contactId }));
     }
   }
 
@@ -45,6 +50,12 @@ export class ContactDetailsComponent implements OnInit {
   constructor(private store: Store<ContactsBookStore>) {}
 
   ngOnInit(): void {
+    this.store.select(contactDetailsSelector).subscribe((contactDetails) => {
+      this.contactUpdateForm.patchValue({
+        ...contactDetails,
+      });
+    });
+
     this.contactUpdateForm = new FormGroup({
       firstName: new FormControl(null, [
         Validators.required,
