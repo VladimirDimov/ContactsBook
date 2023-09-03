@@ -51,18 +51,14 @@
       <div class="col-6">
         <div class="field">
           <label for="dateOfBirth">Birth Date</label>
+          <br />
           <p-calendar
             id="dateOfBirth"
             name="dateOfBirth"
             ngDefaultControl
             formControlName="dateOfBirth"
+            [showIcon]="true"
           ></p-calendar>
-          <!-- <input
-            id="dateOfBirth"
-            formControlName="dateOfBirth"
-            type="date"
-            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-          /> -->
         </div>
       </div>
       <div class="col-6">
@@ -109,7 +105,7 @@
       <p-button
         type="submit"
         label="Update"
-        [disabled]="!this.contactUpdateForm.valid"
+        [disabled]="!this.contactUpdateForm.valid || contactUpdateForm.pristine"
       ></p-button>
     </div>
   </form>

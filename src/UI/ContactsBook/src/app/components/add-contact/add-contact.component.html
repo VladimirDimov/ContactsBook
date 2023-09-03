@@ -51,12 +51,14 @@
       <div class="col-6">
         <div class="field">
           <label for="dateOfBirth">Birth Date</label>
-          <input
+          <br />
+          <p-calendar
             id="dateOfBirth"
+            name="dateOfBirth"
+            ngDefaultControl
             formControlName="dateOfBirth"
-            type="date"
-            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-          />
+            [showIcon]="true"
+          ></p-calendar>
         </div>
       </div>
       <div class="col-6">

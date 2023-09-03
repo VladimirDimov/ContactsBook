@@ -67,7 +67,7 @@ export class ContactDetailsComponent implements OnInit {
         ...contactDetails,
         dateOfBirth: dateOfBirth,
       });
-      console.log('loaded form:', this.contactUpdateForm.value);
+      console.log('loaded form:', this.contactUpdateForm);
     });
 
     this.contactUpdateForm = new FormGroup({
@@ -118,10 +118,10 @@ export class ContactDetailsComponent implements OnInit {
 
     const updateModel = this.contactUpdateForm.value as ContactModel;
     this.store.dispatch(updateContactAction({ value: updateModel }));
+    this.contactUpdateForm.markAsPristine();
   }
 
   addAddress() {
-    console.log(this.addAddressForm.value);
     const newAddress = this.addAddressForm.value as AddressModel;
     this.store.dispatch(createAddressAction({ value: newAddress }));
     this.addAddressForm.reset();

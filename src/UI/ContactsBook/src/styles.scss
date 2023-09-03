@@ -10,3 +10,7 @@ body {
 .p-invalid {
   color: red;
 }
+
+.p-calendar > input {
+  border-color: rgb(237, 235, 233) !important;
+}
