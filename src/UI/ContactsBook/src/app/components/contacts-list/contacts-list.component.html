@@ -31,13 +31,15 @@
         <td>{{ contact.iban }}</td>
         <td>
           <p-button
-            label="Address"
-            styleClass="p-button p-button-info"
+            icon="pi pi-pencil"
             (onClick)="onViewAddresses(contact.id)"
+            styleClass="p-button-secondary"
+            class="btn-action"
           ></p-button>
           <p-button
             icon="pi pi-trash"
-            styleClass="p-button p-button-danger"
+            styleClass="p-button-danger"
+            (onClick)="deleteContact(contact.id)"
           ></p-button>
         </td>
       </tr>

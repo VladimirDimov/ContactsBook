@@ -57,7 +57,7 @@ namespace ContactsBook.Api.Controllers
             return Ok();
         }
 
-        [HttpDelete()]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteContact(int id)
         {
             await _mediator.Send(new DeleteContactCommand(id));

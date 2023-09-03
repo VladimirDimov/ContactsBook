@@ -24,6 +24,7 @@ import { TableModule } from 'primeng/table';
 import { ContactsListComponent } from './components/contacts-list/contacts-list.component';
 import { ContactDetailsComponent } from './components/contact-details/contact-details.component';
 import { CardModule } from 'primeng/card';
+import { CalendarModule } from 'primeng/calendar';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { CardModule } from 'primeng/card';
     TreeTableModule,
     TableModule,
     CardModule,
+    CalendarModule,
     StoreModule.forRoot({
       contactStore: contactsReducer,
     }),

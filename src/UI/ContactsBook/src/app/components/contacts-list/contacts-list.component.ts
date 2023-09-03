@@ -2,7 +2,10 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ConfirmationService, MessageService, TreeNode } from 'primeng/api';
 import { Observable } from 'rxjs';
-import { loadContactsAction } from 'src/app/store/actions/contacts-book.actions';
+import {
+  deleteContactAction,
+  loadContactsAction,
+} from 'src/app/store/actions/contacts-book.actions';
 import { ContactsBookStore } from 'src/app/store/reducer.interfaces';
 import { contactsSelector } from 'src/app/store/selectors/contacts.selectors';
 
@@ -48,5 +51,9 @@ export class ContactsListComponent implements OnInit, OnDestroy {
   onViewAddresses(contactId: number) {
     this.contactDetailsId = contactId;
     this.detailsVisible = true;
+  }
+
+  deleteContact(id: number) {
+    this.store.dispatch(deleteContactAction({ value: id }));
   }
 }

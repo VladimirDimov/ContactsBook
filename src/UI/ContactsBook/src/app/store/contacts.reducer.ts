@@ -4,6 +4,7 @@ import {
   createAddressSuccessAction,
   createContactSuccessAction,
   deleteAddressSuccessAction,
+  deleteContactSuccessAction,
   getContactAddressesSuccessAction,
   getContactDetailsSuccessAction,
   loadContactsSuccessAction,
@@ -57,5 +58,11 @@ export const contactsReducer = createReducer(
     );
 
     return { ...state, contactAddresses: addresses };
+  }),
+
+  on(deleteContactSuccessAction, (state, action) => {
+    const contacts = [...state.contacts].filter((a) => a.id !== action.value);
+
+    return { ...state, contacts };
   })
 );

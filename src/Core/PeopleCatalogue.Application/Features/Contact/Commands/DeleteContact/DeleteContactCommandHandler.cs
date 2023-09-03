@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
-using MediatR;
 using ContactsBook.Application.Contracts.Persistence;
-using ContactsBook.Application.Exceptions;
+using MediatR;
 
 namespace ContactsBook.Application.Features.Person.Commands.DeleteContact
 {
@@ -23,14 +22,9 @@ namespace ContactsBook.Application.Features.Person.Commands.DeleteContact
 
         public async Task<Unit> Handle(DeleteContactCommand request, CancellationToken cancellationToken)
         {
-            var address = await _addressRepository.GetAsync(request.Id)
-                ?? throw new NotFoundException(nameof(Domain.Address), request.Id);
+            var contact = await _contactRepository.GetAsync(request.Id);
 
-            var contact = await _contactRepository.GetAsync(address.ContactId);
-
-            contact.RemoveAddress(address);
-
-            await _contactRepository.UpdateAsync(contact);
+            await _contactRepository.DeleteAsync(contact);
 
             return Unit.Value;
         }

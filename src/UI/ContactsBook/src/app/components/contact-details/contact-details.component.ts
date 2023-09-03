@@ -62,9 +62,12 @@ export class ContactDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.select(contactDetailsSelector).subscribe((contactDetails) => {
+      const dateOfBirth = new Date(contactDetails.dateOfBirth);
       this.contactUpdateForm.patchValue({
         ...contactDetails,
+        dateOfBirth: dateOfBirth,
       });
+      console.log('loaded form:', this.contactUpdateForm.value);
     });
 
     this.contactUpdateForm = new FormGroup({

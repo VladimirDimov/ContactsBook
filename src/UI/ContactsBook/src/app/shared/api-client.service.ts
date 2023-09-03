@@ -41,4 +41,8 @@ export class ApiClientService {
   deleteAddress(id: number): Observable<any> {
     return this.http.delete(this.baseUrl + `/addresses?id=${id}`);
   }
+
+  deleteContact(id: number): Observable<any> {
+    return this.http.delete(this.baseUrl + `/contacts/${id}`);
+  }
 }
