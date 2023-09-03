@@ -15,6 +15,8 @@ import {
   loadContactsFailAction,
   loadContactsSuccessAction,
   submitContactAction,
+  updateContactAction,
+  updateContactSuccessAction,
 } from '../actions/contacts-book.actions';
 import { ApiClientService } from 'src/app/shared/api-client.service';
 import { of } from 'rxjs/internal/observable/of';
@@ -121,5 +123,27 @@ export class ContatsBookEffects {
         })
       ),
     { dispatch: true }
+  );
+
+  updateContactEffect = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(updateContactAction),
+        tap((action) => {
+          console.log('from effects: ', action);
+          this.apiClientService
+            .updateContact(action.value)
+            .pipe(
+              map((_) => {
+                this.store.dispatch(
+                  updateContactSuccessAction({ value: action.value })
+                );
+              }),
+              catchError((err) => of(loadContactsFailAction(err)))
+            )
+            .subscribe();
+        })
+      ),
+    { dispatch: false }
   );
 }

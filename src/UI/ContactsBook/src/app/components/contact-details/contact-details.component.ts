@@ -1,11 +1,12 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { AddressModel } from 'src/app/models/contact.model';
+import { AddressModel, ContactModel } from 'src/app/models/contact.model';
 import {
   createAddressAction,
   getContactAddressesAction,
   getContactDetailsAction,
+  updateContactAction,
 } from 'src/app/store/actions/contacts-book.actions';
 import { ContactsBookStore } from 'src/app/store/reducer.interfaces';
 import {
@@ -57,6 +58,7 @@ export class ContactDetailsComponent implements OnInit {
     });
 
     this.contactUpdateForm = new FormGroup({
+      id: new FormControl(this.contactId),
       firstName: new FormControl(null, [
         Validators.required,
         Validators.maxLength(30),
@@ -97,7 +99,13 @@ export class ContactDetailsComponent implements OnInit {
     this.addresses$ = this.store.select(contactAddressesSelector);
   }
 
-  onSubmit() {}
+  updateContact() {
+    if (!this.contactUpdateForm.valid)
+      throw Error('Invalid update contact form');
+
+    const updateModel = this.contactUpdateForm.value as ContactModel;
+    this.store.dispatch(updateContactAction({ value: updateModel }));
+  }
 
   addAddress() {
     console.log(this.addAddressForm.value);

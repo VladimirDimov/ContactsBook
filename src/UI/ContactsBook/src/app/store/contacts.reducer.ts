@@ -6,6 +6,7 @@ import {
   getContactAddressesSuccessAction,
   getContactDetailsSuccessAction,
   loadContactsSuccessAction,
+  updateContactSuccessAction,
 } from './actions/contacts-book.actions';
 
 import { ContactModel } from '../models/contact.model';
@@ -38,5 +39,14 @@ export const contactsReducer = createReducer(
 
   on(getContactDetailsSuccessAction, (state, action) => {
     return { ...state, contactDetails: action.value };
+  }),
+
+  on(updateContactSuccessAction, (state, action) => {
+    const updatedContact = action.value;
+    const contacts = state.contacts.map((c) =>
+      c.id === updatedContact.id ? updatedContact : { ...c }
+    );
+
+    return { ...state, contacts: contacts };
   })
 );
