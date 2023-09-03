@@ -1,5 +1,5 @@
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { tap, switchMap, map, catchError, mergeMap } from 'rxjs';
+import { tap, switchMap, map, catchError } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { ContactsBookStore } from '../reducer.interfaces';
 import { Store } from '@ngrx/store';
@@ -41,23 +41,23 @@ export class ContatsBookEffects {
     () =>
       this.actions$.pipe(
         ofType(submitContactAction),
-        tap((action) => {
+        switchMap((action) => {
           console.log('from effects: ', action);
-          this.apiClientService
-            .addNewContact(action.value)
-            .pipe(
-              map((response) => {
-                const createdContact = { ...action.value, id: response };
+          return this.apiClientService.addNewContact(action.value).pipe(
+            map((response) => {
+              const createdContact = { ...action.value, id: response };
+              return this.store.dispatch(
+                createContactSuccessAction({ value: createdContact })
+              );
+            }),
+            catchError((err: any) => {
+              return of(
                 this.store.dispatch(
-                  createContactSuccessAction({ value: createdContact })
-                );
-              }),
-              catchError((err: any) => {
-                debugger;
-                return of(errorMessageAction({ value: '' }));
-              })
-            )
-            .subscribe();
+                  errorMessageAction({ value: 'Unable to create contact' })
+                )
+              );
+            })
+          );
         })
       ),
     { dispatch: false }
@@ -101,20 +101,26 @@ export class ContatsBookEffects {
     () =>
       this.actions$.pipe(
         ofType(createAddressAction),
-        tap((action) => {
-          console.log('from effects: ', action);
-          this.apiClientService
-            .addNewAddress(action.value)
-            .pipe(
-              map((response) => {
-                const createdAddress = { ...action.value, id: response };
+        switchMap((action) => {
+          return this.apiClientService.addNewAddress(action.value).pipe(
+            map((response) => {
+              const createdAddress = { ...action.value, id: response };
+              this.store.dispatch(
+                createAddressSuccessAction({ value: createdAddress })
+              );
+
+              this.store.dispatch(
+                successMessageAction({ value: 'Address created' })
+              );
+            }),
+            catchError((err) =>
+              of(
                 this.store.dispatch(
-                  createAddressSuccessAction({ value: createdAddress })
-                );
-              }),
-              catchError((err) => of(loadContactsFailAction(err)))
+                  errorMessageAction({ value: 'Unable to create address' })
+                )
+              )
             )
-            .subscribe();
+          );
         })
       ),
     { dispatch: false }
@@ -140,24 +146,24 @@ export class ContatsBookEffects {
     () =>
       this.actions$.pipe(
         ofType(updateContactAction),
-        tap((action) => {
-          console.log('from effects: ', action);
-          this.apiClientService
-            .updateContact(action.value)
-            .pipe(
-              map((_) => {
+        switchMap((action) => {
+          return this.apiClientService.updateContact(action.value).pipe(
+            map((_) => {
+              this.store.dispatch(
+                updateContactSuccessAction({ value: action.value })
+              );
+              this.store.dispatch(
+                successMessageAction({ value: 'Contact updated' })
+              );
+            }),
+            catchError((err) =>
+              of(
                 this.store.dispatch(
-                  updateContactSuccessAction({ value: action.value })
-                );
-                this.store.dispatch(
-                  successMessageAction({ value: 'Contact updated' })
-                );
-              }),
-              catchError((err) =>
-                of(errorMessageAction({ value: 'Unable to update contact' }))
+                  errorMessageAction({ value: 'Unable to update contact' })
+                )
               )
             )
-            .subscribe();
+          );
         })
       ),
     { dispatch: false }

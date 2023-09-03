@@ -62,9 +62,6 @@ namespace ContactsBook.Api.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteContact(int id)
         {
-            throw new Application.Exceptions.ValidationException(new List<ValidationFailure> {
-                new ValidationFailure("Contact", $"Not existing contact id {id}. this is a test exception")
-            });
             await _mediator.Send(new DeleteContactCommand(id));
 
             return Ok();
