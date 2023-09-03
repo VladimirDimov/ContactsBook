@@ -57,7 +57,9 @@ export class ContatsBookEffects {
             catchError((err: any) => {
               return of(
                 this.store.dispatch(
-                  errorMessageAction({ value: 'Unable to create contact' })
+                  errorMessageAction({
+                    value: err || 'Unable to create contact',
+                  })
                 )
               );
             })
@@ -264,11 +266,23 @@ export class ContatsBookEffects {
     () =>
       this.actions$.pipe(
         ofType(errorMessageAction),
-        tap((action) => {
+        tap((action: any) => {
+          const actionValue = action.value;
+          const {
+            error: { errors },
+          } = actionValue;
+
+          const errorMessages =
+            typeof actionValue === 'string'
+              ? actionValue
+              : Object.values(errors)
+                  .map((err: any) => err.toString())
+                  .join('\n');
+
           this.messageService.add({
             severity: 'error',
             summary: 'Error',
-            detail: action.value,
+            detail: errorMessages,
             closable: false,
           });
         })

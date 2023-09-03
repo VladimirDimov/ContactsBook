@@ -94,5 +94,5 @@ export const successMessageAction = createAction(
 
 export const errorMessageAction = createAction(
   '[Common] Error Message',
-  props<{ value: string }>()
+  props<{ value: any }>()
 );
