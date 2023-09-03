@@ -1,5 +1,5 @@
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { tap, switchMap, map, catchError } from 'rxjs';
+import { tap, switchMap, map, catchError, mergeMap } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { ContactsBookStore } from '../reducer.interfaces';
 import { Store } from '@ngrx/store';
@@ -167,19 +167,22 @@ export class ContatsBookEffects {
     () =>
       this.actions$.pipe(
         ofType(deleteAddressAction),
-        tap((action) => {
+        switchMap((action) => {
           console.log('from effects: ', action);
-          this.apiClientService
-            .deleteAddress(action.value)
-            .pipe(
-              map((_) => {
+          return this.apiClientService.deleteAddress(action.value).pipe(
+            map((_) => {
+              return this.store.dispatch(
+                deleteAddressSuccessAction({ value: action.value })
+              );
+            }),
+            catchError((err) =>
+              of(
                 this.store.dispatch(
-                  deleteAddressSuccessAction({ value: action.value })
-                );
-              }),
-              catchError((err) => of(loadContactsFailAction(err)))
+                  errorMessageAction({ value: 'Unable to delete address' })
+                )
+              )
             )
-            .subscribe();
+          );
         })
       ),
     { dispatch: false }
@@ -189,25 +192,22 @@ export class ContatsBookEffects {
     () =>
       this.actions$.pipe(
         ofType(deleteContactAction),
-        tap((action) => {
+        switchMap((action) => {
           console.log('from effects: ', action);
-          this.apiClientService
-            .deleteContact(action.value)
-            .pipe(
-              map((_) => {
-                this.store.dispatch(
-                  deleteContactSuccessAction({ value: action.value })
-                );
-              }),
-              catchError((err) => {
+          return this.apiClientService.deleteContact(action.value).pipe(
+            map((_) => {
+              return this.store.dispatch(
+                deleteContactSuccessAction({ value: action.value })
+              );
+            }),
+            catchError((err) =>
+              of(
                 this.store.dispatch(
                   errorMessageAction({ value: 'Unable to delete contact' })
-                );
-
-                return of();
-              })
+                )
+              )
             )
-            .subscribe();
+          );
         })
       ),
     { dispatch: false }
