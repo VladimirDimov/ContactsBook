@@ -76,7 +76,13 @@ export class ContatsBookEffects {
             map((products) => {
               return loadContactsSuccessAction({ value: products });
             }),
-            catchError((err) => of(loadContactsFailAction(err)))
+            catchError((err) =>
+              of(
+                errorMessageAction({
+                  value: 'Unable to fetch contacts from the server.',
+                })
+              )
+            )
           );
         })
       ),
@@ -94,7 +100,13 @@ export class ContatsBookEffects {
               map((addresses) => {
                 return getContactAddressesSuccessAction({ value: addresses });
               }),
-              catchError((err) => of(loadContactsFailAction(err)))
+              catchError((err) =>
+                of(
+                  errorMessageAction({
+                    value: 'Unable to fetch addresses from the server.',
+                  })
+                )
+              )
             );
         })
       ),
@@ -139,7 +151,13 @@ export class ContatsBookEffects {
             map((contactDetails) => {
               return getContactDetailsSuccessAction({ value: contactDetails });
             }),
-            catchError((err) => of(loadContactsFailAction(err)))
+            catchError((err) =>
+              of(
+                errorMessageAction({
+                  value: 'Unable to fetch contact details from the server.',
+                })
+              )
+            )
           );
         })
       ),
