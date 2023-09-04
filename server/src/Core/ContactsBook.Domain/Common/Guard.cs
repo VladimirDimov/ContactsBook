@@ -29,39 +29,6 @@ namespace ContactsBook.Domain.Common
             ThrowException<TException>($"{name} must have between {minLength} and {maxLength} symbols.");
         }
 
-        public static void AgainstOutOfRange<TException>(int number, int min, int max, string name = "Value")
-            where TException : BaseDomainException, new()
-        {
-            if (min <= number && number <= max)
-            {
-                return;
-            }
-
-            ThrowException<TException>($"{name} must be between {min} and {max}.");
-        }
-
-        public static void AgainstOutOfRange<TException>(decimal number, decimal min, decimal max, string name = "Value")
-            where TException : BaseDomainException, new()
-        {
-            if (min <= number && number <= max)
-            {
-                return;
-            }
-
-            ThrowException<TException>($"{name} must be between {min} and {max}.");
-        }
-
-        public static void Against<TException>(object actualValue, object unexpectedValue, string name = "Value")
-            where TException : BaseDomainException, new()
-        {
-            if (!actualValue.Equals(unexpectedValue))
-            {
-                return;
-            }
-
-            ThrowException<TException>($"{name} must not be {unexpectedValue}.");
-        }
-
         private static void ThrowException<TException>(string message)
             where TException : BaseDomainException, new()
         {
