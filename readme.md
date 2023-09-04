@@ -59,6 +59,8 @@ The create contact dialog will be shown
 Fill in the form
 ![alt](./resources/create-contact-fill-form.png)
 
+Note: The validation of the IBAN is performed on the backend side. The IBAN check includes a check-sum, so a valid IBAN needs to be provided. You can use this site here to generate a valid IBAN: `http://randomiban.com/?country=Netherlands`
+
 After submit, a success message is shown and the new contact is added to the list of contacts
 
 ![alt](./resources/create-contact-success.png)
