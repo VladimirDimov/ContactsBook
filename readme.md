@@ -34,6 +34,31 @@ Note: The purpose of this project is only to demonstrate the used technologies a
    The actual database operations are managed in the infrastructure layer. This layer communicates with the database.
 
    Here is a high level diagram
+
    ![alt](./resources/architecture.png)
 
    ## Frontend
+
+   The following frameworks and libraries have been used:
+
+   - Angular 16
+   - PrimeNG
+   - ngrx
+
+On the home page the list of contacts is shown.
+
+![alt](./resources/home.png)
+
+To create new contact click on the `Add Contact` button.
+![alt](./resources/add-contact-btn.png)
+
+The create contact dialog will be shown
+
+![alt](./resources/add-contact-dialog.png)
+
+Fill in the form
+![alt](./resources/create-contact-fill-form.png)
+
+After submit, a success message is shown and the new contact is added to the list of contacts
+
+![alt](./resources/create-contact-success.png)

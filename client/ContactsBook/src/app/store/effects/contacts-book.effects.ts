@@ -290,9 +290,11 @@ export class ContatsBookEffects {
           const errorMessages =
             typeof value === 'string'
               ? value
-              : Object.values(errors)
+              : errors?.length
+              ? Object.values(errors)
                   .map((err: any) => err.toString())
-                  .join('\n');
+                  .join('\n')
+              : 'Operation failed';
 
           this.messageService.add({
             severity: 'error',
