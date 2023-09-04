@@ -37,7 +37,7 @@ export class ContatsBookEffects {
     private messageService: MessageService
   ) {}
 
-  submitNewContactForm = createEffect(
+  createContactEffect = createEffect(
     () =>
       this.actions$.pipe(
         ofType(submitContactAction),
@@ -72,7 +72,7 @@ export class ContatsBookEffects {
     { dispatch: false }
   );
 
-  loadContactsEffect = createEffect(
+  getContactsEffect = createEffect(
     () =>
       this.actions$.pipe(
         ofType(loadContactsAction),
@@ -94,7 +94,7 @@ export class ContatsBookEffects {
     { dispatch: true }
   );
 
-  getContactAddresses = createEffect(
+  getContactAddressesEffect = createEffect(
     () =>
       this.actions$.pipe(
         ofType(getContactAddressesAction),
@@ -118,7 +118,7 @@ export class ContatsBookEffects {
     { dispatch: true }
   );
 
-  submitNewAddressForm = createEffect(
+  createAddressEffect = createEffect(
     () =>
       this.actions$.pipe(
         ofType(createAddressAction),

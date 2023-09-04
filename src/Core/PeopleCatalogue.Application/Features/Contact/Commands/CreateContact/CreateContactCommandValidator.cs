@@ -1,30 +1,33 @@
 ﻿using System.Text;
 using FluentValidation;
+using static ContactsBook.Domain.Common.DomainConstants;
 
 namespace ContactsBook.Application.Features.Contact.Commands.CreateContact
 {
     public class CreateContactCommandValidator : AbstractValidator<CreateContactCommand>
     {
+
         public CreateContactCommandValidator()
         {
             RuleFor(m => m.FirstName)
                 .NotEmpty()
-                .MinimumLength(2)
-                .MaximumLength(30);
+                .MinimumLength(ContactValidationConstants.FirstNameMinLength)
+                .MaximumLength(ContactValidationConstants.FirstNameMaxLength);
 
             RuleFor(m => m.LastName)
                 .NotEmpty()
-                .MinimumLength(2)
-                .MaximumLength(30);
+                .MinimumLength(ContactValidationConstants.LastNameMinLength)
+                .MaximumLength(ContactValidationConstants.LastNameMaxLength);
 
             RuleFor(m => m.PhoneNumber)
                 .NotEmpty()
-                .MaximumLength(20);
+                .MaximumLength(ContactValidationConstants.PhoneNumberMaxLength);
 
             RuleFor(m => m.Iban)
-                .MaximumLength(34);
+                .MaximumLength(ContactValidationConstants.IbanMaxLength);
 
             RuleFor(m => m.Iban)
+                .MinimumLength(ContactValidationConstants.IbanMinLength)
                 .Must(iban =>
                 {
                     if (string.IsNullOrEmpty(iban))
@@ -39,33 +42,35 @@ namespace ContactsBook.Application.Features.Contact.Commands.CreateContact
         {
             bankAccount = bankAccount.ToUpper();
 
-            if (String.IsNullOrEmpty(bankAccount))
+            if (string.IsNullOrEmpty(bankAccount))
                 return false;
 
             else if (System.Text.RegularExpressions.Regex.IsMatch(bankAccount, "^[A-Z0-9]"))
             {
-                bankAccount = bankAccount.Replace(" ", String.Empty);
-                string bank =
-                bankAccount.Substring(4, bankAccount.Length - 4) + bankAccount.Substring(0, 4);
-                int asciiShift = 55;
-                StringBuilder sb = new StringBuilder();
+                bankAccount = bankAccount.Replace(" ", string.Empty);
+                var bank = bankAccount[4..] + bankAccount[..4];
+                var asciiShift = 55;
+                var sb = new StringBuilder();
 
                 foreach (char c in bank)
                 {
                     int v;
-                    if (Char.IsLetter(c))
+
+                    if (char.IsLetter(c))
                         v = c - asciiShift;
                     else
                         v = int.Parse(c.ToString());
+
                     sb.Append(v);
                 }
 
-                string checkSumString = sb.ToString();
-                int checksum = int.Parse(checkSumString.Substring(0, 1));
+                var checkSumString = sb.ToString();
+                var checksum = int.Parse(checkSumString[..1]);
 
                 for (int i = 1; i < checkSumString.Length; i++)
                 {
-                    int v = int.Parse(checkSumString.Substring(i, 1));
+                    var v = int.Parse(checkSumString.Substring(i, 1));
+
                     checksum *= 10;
                     checksum += v;
                     checksum %= 97;

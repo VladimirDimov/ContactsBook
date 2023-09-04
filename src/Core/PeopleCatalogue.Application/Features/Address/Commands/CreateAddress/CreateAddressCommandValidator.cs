@@ -1,5 +1,8 @@
 ﻿using ContactsBook.Application.Features.Address.Commands.CreateAddress;
+using ContactsBook.Domain.Common;
 using FluentValidation;
+
+using static ContactsBook.Domain.Common.DomainConstants;
 
 namespace ContactsBook.Application.Features.Contact.Commands.CreateContact
 {
@@ -13,22 +16,22 @@ namespace ContactsBook.Application.Features.Contact.Commands.CreateContact
 
             RuleFor(m => m.Title)
                 .NotEmpty()
-                .MaximumLength(20);
+                .MaximumLength(AddressValidationConstants.AddressTitleMaxLength);
 
             RuleFor(m => m.Country)
                 .NotEmpty()
-                .MaximumLength(30);
+                .MaximumLength(AddressValidationConstants.CountryMaxLength);
 
             RuleFor(m => m.City)
                 .NotEmpty()
-                .MaximumLength(30);
+                .MaximumLength(AddressValidationConstants.CityMaxLength);
 
             RuleFor(m => m.Street)
                 .NotEmpty()
-                .MaximumLength(30);
+                .MaximumLength(AddressValidationConstants.StreetLength);
 
             RuleFor(m => m.Number)
-                .MaximumLength(20);
+                .MaximumLength(AddressValidationConstants.NumberLength);
         }
     }
 }
