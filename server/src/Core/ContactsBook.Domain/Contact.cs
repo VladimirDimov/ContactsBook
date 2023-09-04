@@ -1,4 +1,7 @@
-﻿using ContactsBook.Domain.Events;
+﻿using ContactsBook.Domain.Common;
+using ContactsBook.Domain.Events;
+using ContactsBook.Domain.Exceptions;
+using static ContactsBook.Domain.Common.DomainConstants;
 
 namespace ContactsBook.Domain
 {
@@ -13,10 +16,10 @@ namespace ContactsBook.Domain
             string? phoneNumber,
             string? iban)
         {
-            FirstName = firstName;
-            LastName = lastName;
-            DateOfBirth = dateOfBirth;
-            PhoneNumber = phoneNumber;
+            SetFirstName(firstName);
+            SetLastName(lastName);
+            SetDateOfBirth(dateOfBirth);
+            SetPhoneNumber(phoneNumber);
             Iban = iban;
         }
 
@@ -31,6 +34,59 @@ namespace ContactsBook.Domain
         public string? PhoneNumber { get; private set; }
 
         public string? Iban { get; private set; }
+
+        public void SetFirstName(string firstName)
+        {
+            Guard.AgainstEmptyString<InvalidContactException>(firstName, nameof(FirstName));
+
+            Guard.ForStringLength<InvalidContactException>(
+                firstName,
+                ContactValidationConstants.FirstNameMinLength,
+                ContactValidationConstants.FirstNameMaxLength,
+                nameof(FirstName));
+
+            FirstName = firstName;
+        }
+
+        public void SetLastName(string lastName)
+        {
+            Guard.AgainstEmptyString<InvalidContactException>(lastName, nameof(LastName));
+
+            Guard.ForStringLength<InvalidContactException>(
+                lastName,
+                ContactValidationConstants.LastNameMinLength,
+                ContactValidationConstants.LastNameMaxLength,
+                nameof(LastName));
+
+            LastName = lastName;
+        }
+
+        public void SetDateOfBirth(DateTime? date)
+        {
+            DateOfBirth = date;
+        }
+
+        public void SetPhoneNumber(string phone)
+        {
+            Guard.ForStringLength<InvalidContactException>(
+                phone,
+                0,
+                ContactValidationConstants.PhoneNumberMaxLength,
+                nameof(PhoneNumber));
+
+            PhoneNumber = phone;
+        }
+
+        public void SetIban(string iban)
+        {
+            Guard.ForStringLength<InvalidContactException>(
+                iban,
+                ContactValidationConstants.IbanMinLength,
+                ContactValidationConstants.IbanMaxLength,
+                nameof(Iban));
+
+            Iban = iban;
+        }
 
         public void AddAddress(Address address)
         {

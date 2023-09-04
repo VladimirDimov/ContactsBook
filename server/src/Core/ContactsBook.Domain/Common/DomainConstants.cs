@@ -7,8 +7,8 @@
             public const int AddressTitleMaxLength = 20;
             public const int CountryMaxLength = 30;
             public const int CityMaxLength = 30;
-            public const int StreetLength = 30;
-            public const int NumberLength = 20;
+            public const int StreetMaxLength = 30;
+            public const int NumberMaxLength = 20;
         }
 
         public class ContactValidationConstants

@@ -28,10 +28,10 @@ namespace ContactsBook.Application.Features.Contact.Commands.CreateContact
 
             RuleFor(m => m.Street)
                 .NotEmpty()
-                .MaximumLength(AddressValidationConstants.StreetLength);
+                .MaximumLength(AddressValidationConstants.StreetMaxLength);
 
             RuleFor(m => m.Number)
-                .MaximumLength(AddressValidationConstants.NumberLength);
+                .MaximumLength(AddressValidationConstants.NumberMaxLength);
         }
     }
 }
