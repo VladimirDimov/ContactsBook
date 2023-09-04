@@ -62,3 +62,24 @@ Fill in the form
 After submit, a success message is shown and the new contact is added to the list of contacts
 
 ![alt](./resources/create-contact-success.png)
+
+To edit the contact click on the edit button
+
+![alt](./resources/edit-contact-btn.png)
+
+The contact details page will show
+
+![alt](./resources/contact-details-empty.png)
+
+From the details page users can edit the contact or add/remove addresses
+
+To create new address fill in the address form and click the `+` button
+
+![alt](./resources/create-address-form.png)
+
+The new address is added to the details page and the contacts list page
+
+![alt](./resources/address-created.png)
+
+From the details page the address can be deleted.
+The address editing is not implemented at this point as it's pretty much the same as the contacts editing.
