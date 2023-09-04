@@ -16,7 +16,6 @@ namespace ContactsBook.Api.Interceptors
             {
                 { typeof(ValidationException), HandleValidationException },
                 { typeof(NotFoundException), HandleNotFoundException },
-                { typeof(UnauthorizedAccessException), HandleUnauthorizedAccessException },
             };
         }
         public async Task InvokeAsync(HttpContext httpContext)
@@ -27,7 +26,8 @@ namespace ContactsBook.Api.Interceptors
             }
             catch (Exception ex)
             {
-                await TryHandleAsync(httpContext, ex);
+                if (!await TryHandleAsync(httpContext, ex))
+                    throw;
             }
         }
 
