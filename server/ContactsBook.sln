@@ -11,13 +11,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{7B066470-E426-46F0-AEDB-131D68E39AAE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactsBook.Domain", "src\Core\PeopleCatalogue.Domain\ContactsBook.Domain.csproj", "{454E1E0D-296C-4E22-A445-F168722F1C0A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactsBook.Domain", "src\Core\ContactsBook.Domain\ContactsBook.Domain.csproj", "{454E1E0D-296C-4E22-A445-F168722F1C0A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactsBook.Application", "src\Core\PeopleCatalogue.Application\ContactsBook.Application.csproj", "{223B6515-80E5-45F4-B582-4D9681EA36DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactsBook.Application", "src\Core\ContactsBook.Application\ContactsBook.Application.csproj", "{223B6515-80E5-45F4-B582-4D9681EA36DB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactsBook.Persistence", "src\Infrastructure\PeopleCatalogue.Persistence\ContactsBook.Persistence.csproj", "{A1DCAB15-750A-482B-B4C5-A88A013DFAB7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactsBook.Persistence", "src\Infrastructure\ContactsBook.Persistence\ContactsBook.Persistence.csproj", "{A1DCAB15-750A-482B-B4C5-A88A013DFAB7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactsBook.Api", "src\API\PeopleCatalogue.Api\ContactsBook.Api.csproj", "{045F8FAB-250D-4261-AA45-28AE8BD5ADEA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactsBook.Api", "src\API\ContactsBook.Api\ContactsBook.Api.csproj", "{045F8FAB-250D-4261-AA45-28AE8BD5ADEA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

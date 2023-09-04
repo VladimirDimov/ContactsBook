@@ -21,8 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Core\PeopleCatalogue.Application\ContactsBook.Application.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\PeopleCatalogue.Persistence\ContactsBook.Persistence.csproj" />
+    <ProjectReference Include="..\..\Core\ContactsBook.Application\ContactsBook.Application.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\ContactsBook.Persistence\ContactsBook.Persistence.csproj" />
   </ItemGroup>
 
 </Project>
