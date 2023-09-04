@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
 using ContactsBook.Application.Contracts.Persistence;
+using ContactsBook.Application.Features.Contact.Commands.DeleteContact;
 using MediatR;
 
-namespace ContactsBook.Application.Features.Person.Commands.DeleteContact
+namespace ContactsBook.Application.Features.Contact.Commands.DeleteContact
 {
     public class DeleteContactCommandHandler : IRequestHandler<DeleteContactCommand, Unit>
     {

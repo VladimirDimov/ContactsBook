@@ -1,8 +1,6 @@
 ﻿using ContactsBook.Application.Features.Address.Commands.CreateAddress;
 using ContactsBook.Application.Features.Address.Commands.DeleteAddress;
 using ContactsBook.Application.Features.Address.Queries.GetAddressDetails;
-using ContactsBook.Application.Features.Person.Commands.DeleteContact;
-using FluentValidation.Results;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

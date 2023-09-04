@@ -2,9 +2,8 @@
 using MediatR;
 using ContactsBook.Application.Contracts.Persistence;
 using ContactsBook.Application.Exceptions;
-using ContactsBook.Application.Features.Address.Commands.DeleteAddress;
 
-namespace ContactsBook.Application.Features.Person.Commands.DeleteContact
+namespace ContactsBook.Application.Features.Address.Commands.DeleteAddress
 {
     public class DeleteAddressCommandHandler : IRequestHandler<DeleteAddressCommand, Unit>
     {

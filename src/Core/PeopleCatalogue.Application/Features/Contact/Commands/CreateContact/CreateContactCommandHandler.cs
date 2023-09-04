@@ -7,15 +7,12 @@ namespace ContactsBook.Application.Features.Contact.Commands.CreateContact
 {
     public class CreateContactCommandHandler : IRequestHandler<CreateContactCommand, int>
     {
-        private readonly IMapper _mapper;
-        private readonly IContactRepository _personRepository;
+        private readonly IContactRepository _contactRepository;
 
         public CreateContactCommandHandler(
-            IMapper mapper,
-            IContactRepository personRepository)
+            IContactRepository contactRepository)
         {
-            _mapper = mapper;
-            _personRepository = personRepository;
+            _contactRepository = contactRepository;
         }
 
         public async Task<int> Handle(CreateContactCommand request, CancellationToken cancellationToken)
@@ -24,18 +21,18 @@ namespace ContactsBook.Application.Features.Contact.Commands.CreateContact
             var validationResult = await validator.ValidateAsync(request, cancellationToken);
 
             if (!validationResult.IsValid)
-                throw new BadRequestException("Invalid person data", validationResult);
+                throw new BadRequestException("Invalid contact data", validationResult);
 
-            var person = new Domain.Contact(
+            var contact = new Domain.Contact(
                 request.FirstName,
                 request.LastName,
                 request.DateOfBirth,
                 request.PhoneNumber,
                 request.Iban);
 
-            var createdPerson = await _personRepository.CreateAsync(person);
+            var createdContact = await _contactRepository.CreateAsync(contact);
 
-            return createdPerson.Id;
+            return createdContact.Id;
         }
     }
 }

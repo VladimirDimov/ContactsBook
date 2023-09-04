@@ -38,9 +38,9 @@ namespace ContactsBook.Application.Features.Address.Commands.UpdateAddress
 
             contact.AddAddress(address);
 
-            var createdPerson = await _contactRepository.UpdateAsync(contact);
+            var updatedContact = await _contactRepository.UpdateAsync(contact);
 
-            return createdPerson.Id;
+            return updatedContact.Id;
         }
     }
 }

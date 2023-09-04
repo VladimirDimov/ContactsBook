@@ -8,20 +8,20 @@ namespace ContactsBook.Application.Features.Contact.Queries.GetContactDetails
     public class GetContactDetailsQueryHandler : IRequestHandler<GetContactDetailsQuery, ContactDetailsDto>
     {
         private readonly IMapper _mapper;
-        private readonly IContactRepository _personRepository;
+        private readonly IContactRepository _contactRepository;
 
         public GetContactDetailsQueryHandler(
             IMapper mapper,
-            IContactRepository personRepository)
+            IContactRepository contactRepository)
         {
             _mapper = mapper;
-            _personRepository = personRepository;
+            _contactRepository = contactRepository;
         }
 
         public async Task<ContactDetailsDto> Handle(GetContactDetailsQuery request, CancellationToken cancellationToken)
         {
-            var person = await _personRepository.GetAsync(request.Id);
-            var data = _mapper.Map<ContactDetailsDto>(person);
+            var contact = await _contactRepository.GetAsync(request.Id);
+            var data = _mapper.Map<ContactDetailsDto>(contact);
 
             return data;
         }

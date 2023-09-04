@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace ContactsBook.Application.Features.Person.Commands.DeleteContact
+namespace ContactsBook.Application.Features.Contact.Commands.DeleteContact
 {
     public class DeleteContactCommand : IRequest<Unit>
     {

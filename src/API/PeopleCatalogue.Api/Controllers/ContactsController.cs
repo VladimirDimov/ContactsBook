@@ -3,9 +3,7 @@ using ContactsBook.Application.Features.Contact.Commands.CreateContact;
 using ContactsBook.Application.Features.Contact.Commands.UpdateContact;
 using ContactsBook.Application.Features.Contact.Queries.GetAllContacts;
 using ContactsBook.Application.Features.Contact.Queries.GetContactDetails;
-using ContactsBook.Application.Features.Person.Commands.DeleteContact;
-using FluentValidation;
-using FluentValidation.Results;
+using ContactsBook.Application.Features.Contact.Commands.DeleteContact;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

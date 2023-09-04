@@ -7,21 +7,21 @@ namespace ContactsBook.Application.Features.Contact.Commands.UpdateContact
     internal class UpdateContactCommandHandler : IRequestHandler<UpdateContactCommand, Unit>
     {
         private readonly IMapper _mapper;
-        private readonly IContactRepository _personRepository;
+        private readonly IContactRepository _contactRepository;
 
         public UpdateContactCommandHandler(
             IMapper mapper,
-            IContactRepository personRepository)
+            IContactRepository contactRepository)
         {
             _mapper = mapper;
-            _personRepository = personRepository;
+            _contactRepository = contactRepository;
         }
 
         public async Task<Unit> Handle(UpdateContactCommand request, CancellationToken cancellationToken)
         {
-            var person = _mapper.Map<Domain.Contact>(request);
+            var contact = _mapper.Map<Domain.Contact>(request);
 
-            await _personRepository.UpdateAsync(person);
+            await _contactRepository.UpdateAsync(contact);
 
             return Unit.Value;
         }
