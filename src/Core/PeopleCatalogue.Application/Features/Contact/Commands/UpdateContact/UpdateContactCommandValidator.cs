@@ -1,14 +1,17 @@
 ﻿using System.Text;
+using ContactsBook.Application.Common.Helpers;
 using ContactsBook.Application.Contracts.Helpers;
+using ContactsBook.Application.Features.Contact.Commands.CreateContact;
 using FluentValidation;
+
 using static ContactsBook.Domain.Common.DomainConstants;
 
-namespace ContactsBook.Application.Features.Contact.Commands.CreateContact
+namespace ContactsBook.Application.Features.Contact.Commands.UpdateContact
 {
-    public class CreateContactCommandValidator : AbstractValidator<CreateContactCommand>
+    public class UpdateContactCommandValidator : AbstractValidator<UpdateContactCommand>
     {
 
-        public CreateContactCommandValidator(IIbanHelper ibanHelper)
+        public UpdateContactCommandValidator(IIbanHelper ibanHelper)
         {
             RuleFor(m => m.FirstName)
                 .NotEmpty()

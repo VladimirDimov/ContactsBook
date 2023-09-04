@@ -17,11 +17,11 @@ namespace ContactsBook.Application.Features.Contact.Commands.CreateContact
 
         public async Task<int> Handle(CreateContactCommand request, CancellationToken cancellationToken)
         {
-            var validator = new CreateContactCommandValidator();
-            var validationResult = await validator.ValidateAsync(request, cancellationToken);
+            //var validator = new CreateContactCommandValidator();
+            //var validationResult = await validator.ValidateAsync(request, cancellationToken);
 
-            if (!validationResult.IsValid)
-                throw new BadRequestException("Invalid contact data", validationResult);
+            //if (!validationResult.IsValid)
+            //    throw new BadRequestException("Invalid contact data", validationResult);
 
             var contact = new Domain.Contact(
                 request.FirstName,

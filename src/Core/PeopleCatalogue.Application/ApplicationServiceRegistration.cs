@@ -1,5 +1,7 @@
 ﻿using System.Reflection;
 using ContactsBook.Application.Behaviors;
+using ContactsBook.Application.Common.Helpers;
+using ContactsBook.Application.Contracts.Helpers;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,6 +19,7 @@ namespace ContactsBook.Application
 
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
 
+            services.AddSingleton<IIbanHelper, IbanHelper>();
 
             return services;
         }

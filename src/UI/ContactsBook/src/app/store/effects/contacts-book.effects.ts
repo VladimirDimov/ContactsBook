@@ -186,7 +186,9 @@ export class ContatsBookEffects {
             catchError((err) =>
               of(
                 this.store.dispatch(
-                  errorMessageAction({ value: 'Unable to update contact' })
+                  errorMessageAction({
+                    value: err || 'Unable to update contact',
+                  })
                 )
               )
             )
@@ -273,14 +275,21 @@ export class ContatsBookEffects {
       this.actions$.pipe(
         ofType(errorMessageAction),
         tap((action: any) => {
-          const actionValue = action.value;
-          const {
-            error: { errors },
-          } = actionValue;
+          if (!action) {
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Error',
+              detail: 'Operation failed',
+              closable: false,
+            });
+          }
+
+          const errors = action?.value?.error?.errors;
+          const value = action?.value;
 
           const errorMessages =
-            typeof actionValue === 'string'
-              ? actionValue
+            typeof value === 'string'
+              ? value
               : Object.values(errors)
                   .map((err: any) => err.toString())
                   .join('\n');
