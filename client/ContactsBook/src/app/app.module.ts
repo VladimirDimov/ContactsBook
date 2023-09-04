@@ -29,6 +29,7 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './components/about/about.component';
+import { ClearFormService } from './shared/clear-form.service';
 
 const appRoutes: Routes = [
   { path: '', component: ContactsListComponent },
@@ -66,7 +67,7 @@ const appRoutes: Routes = [
     EffectsModule.forRoot([ContatsBookEffects]),
     RouterModule.forRoot(appRoutes),
   ],
-  providers: [ApiClientService, HttpClient, MessageService],
+  providers: [ApiClientService, HttpClient, MessageService, ClearFormService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

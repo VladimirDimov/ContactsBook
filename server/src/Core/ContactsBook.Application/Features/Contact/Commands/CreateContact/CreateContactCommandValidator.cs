@@ -28,7 +28,6 @@ namespace ContactsBook.Application.Features.Contact.Commands.CreateContact
                 .MaximumLength(ContactValidationConstants.IbanMaxLength);
 
             RuleFor(m => m.Iban)
-                .MinimumLength(ContactValidationConstants.IbanMinLength)
                 .Must(iban =>
                 {
                     if (string.IsNullOrEmpty(iban))

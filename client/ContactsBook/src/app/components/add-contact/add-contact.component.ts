@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { ContactCreateModel } from 'src/app/models/contact.model';
+import { ClearFormService } from 'src/app/shared/clear-form.service';
 import { submitContactAction } from 'src/app/store/actions/contacts-book.actions';
 import { ContactsBookStore } from 'src/app/store/reducer.interfaces';
 
@@ -13,7 +14,10 @@ import { ContactsBookStore } from 'src/app/store/reducer.interfaces';
 export class AddContactComponent implements OnInit {
   form: FormGroup<any> = new FormGroup({});
 
-  constructor(private store: Store<ContactsBookStore>) {}
+  constructor(
+    private store: Store<ContactsBookStore>,
+    private clearFormService: ClearFormService
+  ) {}
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -32,6 +36,11 @@ export class AddContactComponent implements OnInit {
       ]),
       iban: new FormControl(null, [Validators.maxLength(34)]),
     });
+
+    this.clearFormService.clearForm$.subscribe((response) => {
+      this.form.reset();
+      this.close();
+    });
   }
 
   private _visible: boolean = false;
@@ -49,9 +58,6 @@ export class AddContactComponent implements OnInit {
     const formValue = this.form.value as ContactCreateModel;
 
     this.store.dispatch(submitContactAction({ value: formValue }));
-
-    this.form.reset();
-    this.close();
   }
 
   close() {

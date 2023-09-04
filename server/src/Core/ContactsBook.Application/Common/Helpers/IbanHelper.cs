@@ -7,12 +7,12 @@ namespace ContactsBook.Application.Common.Helpers
     {
         public bool IsValidIban(string bankAccount)
         {
-            bankAccount = bankAccount.ToUpper();
-
-            if (string.IsNullOrEmpty(bankAccount))
+            if (string.IsNullOrEmpty(bankAccount) || bankAccount.Length < 4)
                 return false;
 
-            else if (System.Text.RegularExpressions.Regex.IsMatch(bankAccount, "^[A-Z0-9]"))
+            bankAccount = bankAccount.ToUpper();
+
+            if (System.Text.RegularExpressions.Regex.IsMatch(bankAccount, "^[A-Z0-9]"))
             {
                 if (bankAccount.Length < 4)
                     return false;

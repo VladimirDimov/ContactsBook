@@ -27,6 +27,7 @@ import {
 import { ApiClientService } from 'src/app/shared/api-client.service';
 import { of } from 'rxjs/internal/observable/of';
 import { MessageService } from 'primeng/api';
+import { ClearFormService } from 'src/app/shared/clear-form.service';
 
 @Injectable()
 export class ContatsBookEffects {
@@ -34,7 +35,8 @@ export class ContatsBookEffects {
     private actions$: Actions,
     private store: Store<ContactsBookStore>,
     private apiClientService: ApiClientService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private clearFormService: ClearFormService
   ) {}
 
   createContactEffect = createEffect(
@@ -56,6 +58,7 @@ export class ContatsBookEffects {
               this.store.dispatch(
                 successMessageAction({ value: 'Contact created' })
               );
+              this.clearFormService.clearForm();
             }),
             catchError((err: any) => {
               return of(
@@ -290,7 +293,7 @@ export class ContatsBookEffects {
           const errorMessages =
             typeof value === 'string'
               ? value
-              : errors?.length
+              : errors
               ? Object.values(errors)
                   .map((err: any) => err.toString())
                   .join('\n')
