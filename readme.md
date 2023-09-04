@@ -26,3 +26,14 @@ Note: The purpose of this project is only to demonstrate the used technologies a
 
    In this project the above diagram is a bit simplified.
    ![alt](./resources/server-solution.PNG)
+
+   In the center we have the domain layer `ContactsBook.Domain`. It is independent from the other projects and encapsulates the domain logic.
+
+   The Application layer has access to the domain layer and is responsible for processing the CQRS operations.
+
+   The actual database operations are managed in the infrastructure layer. This layer communicates with the database.
+
+   Here is a high level diagram
+   ![alt](./resources/architecture.png)
+
+   ## Frontend

@@ -57,9 +57,10 @@ export const contactsReducer = createReducer(
 
   on(updateContactSuccessAction, (state, action) => {
     const updatedContact = action.value;
-    const contacts = state.contacts.map((c) =>
-      c.id === updatedContact.id ? updatedContact : { ...c }
-    );
+    const contacts = state.contacts.map((c) => {
+      debugger;
+      return c.id === updatedContact.id ? updatedContact : { ...c };
+    });
 
     return { ...state, contacts: contacts };
   }),

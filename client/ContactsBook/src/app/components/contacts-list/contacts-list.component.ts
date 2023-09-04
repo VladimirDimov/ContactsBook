@@ -47,7 +47,7 @@ export class ContactsListComponent implements OnInit, OnDestroy {
       .subscribe((contacts: ContactModel[]) => {
         this.contacts = contacts.map((c) => ({
           ...c,
-          addressFormatted: c.address.map((add) => ({
+          addressFormatted: c.address?.map((add) => ({
             title: add.title,
             address: [add.country, add.city, add.street, add.number]
               .filter((part) => !!part)
