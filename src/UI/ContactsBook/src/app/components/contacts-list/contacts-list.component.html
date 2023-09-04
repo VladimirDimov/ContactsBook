@@ -29,7 +29,7 @@
       <tr>
         <td>{{ contact.firstName }}</td>
         <td>{{ contact.lastName }}</td>
-        <td>{{ contact.dateOfBirth | date }}</td>
+        <td>{{ contact.dateOfBirth | date : "dd-MM-yyyy" }}</td>
         <td>{{ contact.phoneNumber }}</td>
         <td>{{ contact.iban }}</td>
         <td>
