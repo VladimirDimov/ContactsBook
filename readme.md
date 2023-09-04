@@ -83,3 +83,11 @@ The new address is added to the details page and the contacts list page
 
 From the details page the address can be deleted.
 The address editing is not implemented at this point as it's pretty much the same as the contacts editing.
+
+# E2E tests
+
+Several test scenarios are written in cypress.
+There are some simple tests to verify links and pages open.
+One test for contact creation which verifies that the contact is created. The created contact is cleaned in the end.
+
+![alt](./resources/cypress-tests.png)
