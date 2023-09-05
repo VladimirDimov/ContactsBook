@@ -8,6 +8,7 @@ using ContactsBook.Domain.Interfaces;
 using ContactsBook.Persistence.DomainEvents;
 using ContactsBook.Persistence.EventHandlers;
 using ContactsBook.Domain.Events;
+using ContactsBook.Domain;
 
 namespace ContactsBook.Persistence
 {
@@ -31,6 +32,15 @@ namespace ContactsBook.Persistence
             services.AddScoped<IHandle<AddressUpdatedEvent>, AddressUpdatedEventHandler>();
 
             return services;
+        }
+
+        public static void EnsureCreateData(this IServiceProvider serviceProvider)
+        {
+            using (var scope = serviceProvider.CreateScope())
+            using (var context = scope.ServiceProvider.GetService<ContactsBookDatabaseContext>())
+            {
+                new DataSeeder().SeedData(context);
+            }
         }
     }
 }

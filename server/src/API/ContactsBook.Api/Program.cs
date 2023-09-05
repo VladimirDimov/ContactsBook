@@ -3,6 +3,7 @@ using ContactsBook.Api.Interceptors;
 using ContactsBook.Application;
 using ContactsBook.Persistence;
 using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.EntityFrameworkCore;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace ContactsBook.Api
@@ -40,6 +41,7 @@ namespace ContactsBook.Api
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
+                app.Services.EnsureCreateData();
             }
 
             app.UseCors("all");

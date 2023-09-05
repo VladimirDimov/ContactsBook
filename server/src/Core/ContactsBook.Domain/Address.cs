@@ -33,11 +33,25 @@ namespace ContactsBook.Domain
 
         public string? Number { get; private set; }
 
-        public int ContactId { get; set; }
+        public int ContactId { get; private set; }
 
-        public Contact Contact { get; set; }
+        public Contact Contact { get; private set; }
 
-        public void SetTitle(string country)
+        public Address SetContact(Contact contact)
+        {
+            Contact = contact;
+
+            return this;
+        }
+
+        public Address SetContactId(int contactId)
+        {
+            ContactId = contactId;
+
+            return this;
+        }
+
+        public Address SetTitle(string country)
         {
             Guard.AgainstEmptyString<InvalidAddressException>(country, nameof(Title));
 
@@ -48,9 +62,11 @@ namespace ContactsBook.Domain
                 nameof(Title));
 
             Title = country;
+
+            return this;
         }
 
-        public void SetCountry(string country)
+        public Address SetCountry(string country)
         {
             Guard.AgainstEmptyString<InvalidAddressException>(country, nameof(Title));
 
@@ -61,9 +77,11 @@ namespace ContactsBook.Domain
                 nameof(Title));
 
             Country = country;
+
+            return this;
         }
 
-        public void SetCity(string city)
+        public Address SetCity(string city)
         {
             Guard.AgainstEmptyString<InvalidAddressException>(city, nameof(City));
 
@@ -74,9 +92,11 @@ namespace ContactsBook.Domain
                 nameof(Title));
 
             City = city;
+
+            return this;
         }
 
-        public void SetStreet(string street)
+        public Address SetStreet(string street)
         {
             Guard.AgainstEmptyString<InvalidAddressException>(street, nameof(Street));
 
@@ -87,9 +107,11 @@ namespace ContactsBook.Domain
                 nameof(Title));
 
             Street = street;
+
+            return this;
         }
 
-        public void SetNumber(string? number)
+        public Address SetNumber(string? number)
         {
             Guard.ForStringLength<InvalidAddressException>(
                 number,
@@ -98,6 +120,8 @@ namespace ContactsBook.Domain
                 nameof(Title));
 
             Number = number;
+
+            return this;
         }
     }
 }
